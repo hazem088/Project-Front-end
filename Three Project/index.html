@@ -1,0 +1,452 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task</title>
+    <link rel="stylesheet" href="css/style.css"/>
+
+      
+    
+</head>
+<body> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowthHub - Digital Marketing Agency</title>
+    <meta name="description" content="GrowthHub is a modern digital marketing agency helping brands grow with innovative strategies.">
+    <link rel="icon" href="/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: '#0d9488',
+                        'brand-dark': '#0f766e',
+                        'brand-light': '#5eead4',
+                        dark: '#0f172a',
+                        'dark-soft': '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-white text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="text-2xl font-extrabold text-dark">Growth<span class="text-brand">Hub</span></a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-gray-600 hover:text-brand transition">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-brand transition">Services</a>
+                <a href="#team" class="text-gray-600 hover:text-brand transition">Our Team</a>
+                <a href="#about" class="text-gray-600 hover:text-brand transition">About</a>
+                <a href="#contact" class="text-gray-600 hover:text-brand transition">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:inline-block bg-brand text-white px-6 py-2.5 rounded-full font-semibold hover:bg-brand-dark transition">Get Started</a>
+            <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden text-gray-700">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t px-6 pb-4">
+            <a href="#home" class="block py-2 text-gray-600 hover:text-brand">Home</a>
+            <a href="#services" class="block py-2 text-gray-600 hover:text-brand">Services</a>
+            <a href="#team" class="block py-2 text-gray-600 hover:text-brand">Our Team</a>
+            <a href="#about" class="block py-2 text-gray-600 hover:text-brand">About</a>
+            <a href="#contact" class="block py-2 text-gray-600 hover:text-brand">Contact</a>
+            <a href="#contact" class="block mt-2 bg-brand text-white text-center px-6 py-2.5 rounded-full font-semibold">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center bg-gradient-to-br from-teal-50 via-white to-emerald-50 pt-20">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-dark leading-tight">
+                    We Create <span class="text-brand">Digital Success</span> for Your Brand
+                </h1>
+                <p class="mt-6 text-lg text-gray-500 leading-relaxed max-w-lg">
+                    We provide integrated marketing solutions that help your company grow and increase sales through innovative strategies.
+                </p>
+                <div class="mt-6 flex flex-wrap gap-6 text-sm text-gray-600">
+                    <span class="flex items-center gap-2">
+                        <span class="w-5 h-5 bg-brand rounded-full flex items-center justify-center text-white text-xs">✓</span>
+                        10+ Years Experience
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <span class="w-5 h-5 bg-brand rounded-full flex items-center justify-center text-white text-xs">✓</span>
+                        +500 Clients
+                    </span>
+                    <span class="flex items-center gap-2">
+                        <span class="w-5 h-5 bg-brand rounded-full flex items-center justify-center text-white text-xs">✓</span>
+                        Professional Team
+                    </span>
+                </div>
+                <div class="mt-8 flex flex-wrap gap-4">
+                    <a href="#contact" class="bg-brand text-white px-8 py-3.5 rounded-full font-semibold hover:bg-brand-dark transition shadow-lg shadow-teal-200">Start Your Journey Now</a>
+                    <a href="#about" class="border-2 border-gray-300 text-gray-700 px-8 py-3.5 rounded-full font-semibold hover:border-brand hover:text-brand transition flex items-center gap-2">▶ Watch the Video</a>
+                </div>
+            </div>
+            <div class="relative">
+                <img src="images/pmg.png" alt="Digital marketing dashboard" class="w-full rounded-2xl shadow-2xl">
+                <div class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg px-5 py-3 flex items-center gap-3">
+                    <span class="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center text-brand text-xl">👥</span>
+                    <div>
+                        <p class="text-xs text-gray-400">Happy Clients</p>
+                        <p class="text-xl font-bold text-dark">+500</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark">Our Integrated Services</h2>
+                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">We offer a comprehensive range of digital solutions to grow your business.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-teal-50 to-white border border-teal-100 rounded-2xl p-8 hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center text-brand text-2xl mb-6 group-hover:bg-brand group-hover:text-white transition">🔍</div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Search Engine Optimization</h3>
+                    <p class="text-gray-500 mb-5">We ensure your website appears on the first pages of search engines.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> Keyword Analysis</li>
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> Content Optimization</li>
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> Link Building</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 rounded-2xl p-8 hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center text-brand text-2xl mb-6 group-hover:bg-brand group-hover:text-white transition">📱</div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Social Media Marketing</h3>
+                    <p class="text-gray-500 mb-5">We manage your advertising campaigns on all platforms with high professionalism.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> Precise Targeting</li>
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> Results Analysis</li>
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> Campaign Optimization</li>
+                    </ul>
+                </div>
+                <div class="bg-gradient-to-br from-cyan-50 to-white border border-cyan-100 rounded-2xl p-8 hover:shadow-xl transition group">
+                    <div class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center text-brand text-2xl mb-6 group-hover:bg-brand group-hover:text-white transition">💻</div>
+                    <h3 class="text-xl font-bold text-dark mb-3">Website Design & Development</h3>
+                    <p class="text-gray-500 mb-5">We design professional websites compatible with all devices.</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> Responsive Design</li>
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> High Speed</li>
+                        <li class="flex items-center gap-2"><span class="text-brand">✓</span> Easy Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-brand">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+            <div>
+                <p class="text-4xl font-extrabold">+500</p>
+                <p class="mt-2 text-teal-200">Clients Worldwide</p>
+            </div>
+            <div>
+                <p class="text-4xl font-extrabold">+1000</p>
+                <p class="mt-2 text-teal-200">Projects Completed</p>
+            </div>
+            <div>
+                <p class="text-4xl font-extrabold">+50</p>
+                <p class="mt-2 text-teal-200">Marketing Experts</p>
+            </div>
+            <div>
+                <p class="text-4xl font-extrabold">+10</p>
+                <p class="mt-2 text-teal-200">Years of Experience</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark">Our Creative Team</h2>
+                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">An elite group of the best digital marketing experts.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="relative group overflow-hidden">
+                        <img src="images/mohamed.jfif" alt="Ahmed Mohamed" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-brand/70 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-bold text-dark">Ahmed Mohamed</h3>
+                        <p class="text-brand text-sm font-medium mt-1">Marketing Director</p>
+                        <p class="text-gray-400 text-sm mt-2">10 years of experience in digital marketing</p>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="relative group overflow-hidden">
+                        <img src="images/download (1).jfif" alt="Sara Ahmed" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-brand/70 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-bold text-dark">Sara Ahmed</h3>
+                        <p class="text-brand text-sm font-medium mt-1">SEO Specialist</p>
+                        <p class="text-gray-400 text-sm mt-2">Specialized in search engine optimization</p>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="relative group overflow-hidden">
+                        <img src="images/download (2).jfif" alt="Mohamed Ali" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-brand/70 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-bold text-dark">Mohamed Ali</h3>
+                        <p class="text-brand text-sm font-medium mt-1">Web Developer</p>
+                        <p class="text-gray-400 text-sm mt-2">Expert in web development</p>
+                    </div>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="relative group overflow-hidden">
+                        <img src="images/download (3).jfif" alt="Noura Khaled" class="w-full h-64 object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-brand/70 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-brand hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-bold text-dark">Noura Khaled</h3>
+                        <p class="text-brand text-sm font-medium mt-1">Graphic Designer</p>
+                        <p class="text-gray-400 text-sm mt-2">Specialized in visual identity design</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark">Why Choose GrowthHub?</h2>
+                <p class="mt-6 text-gray-500 leading-relaxed">We combine creativity with data-driven strategies to deliver exceptional results. Our team of experts works closely with you to understand your goals and craft tailored solutions.</p>
+                <div class="mt-8 space-y-5">
+                    <div class="flex items-start gap-4">
+                        <span class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center text-brand flex-shrink-0 mt-1">🎯</span>
+                        <div>
+                            <h4 class="font-bold text-dark">Results-Driven Approach</h4>
+                            <p class="text-gray-400 text-sm mt-1">Every strategy is backed by data and designed to maximize your ROI.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center text-brand flex-shrink-0 mt-1">⚡</span>
+                        <div>
+                            <h4 class="font-bold text-dark">Fast Turnaround</h4>
+                            <p class="text-gray-400 text-sm mt-1">We deliver quality work within tight deadlines without compromising standards.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <span class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center text-brand flex-shrink-0 mt-1">🤝</span>
+                        <div>
+                            <h4 class="font-bold text-dark">Dedicated Support</h4>
+                            <p class="text-gray-400 text-sm mt-1">24/7 support to ensure your campaigns run smoothly at all times.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-gradient-to-br from-teal-500 to-emerald-600 rounded-3xl p-12 text-white">
+                <p class="text-5xl font-extrabold">10+</p>
+                <p class="text-teal-200 mt-2 text-lg">Years of Excellence</p>
+                <hr class="border-teal-400/30 my-8">
+                <p class="text-5xl font-extrabold">500+</p>
+                <p class="text-teal-200 mt-2 text-lg">Satisfied Clients</p>
+                <hr class="border-teal-400/30 my-8">
+                <p class="text-5xl font-extrabold">98%</p>
+                <p class="text-teal-200 mt-2 text-lg">Client Retention Rate</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-dark">Get In Touch</h2>
+                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">Have a project in mind? Let's discuss how we can help you grow.</p>
+            </div>
+            <div class="grid md:grid-cols-5 gap-8">
+                <!-- Contact Form -->
+                <div class="md:col-span-3 bg-white rounded-2xl shadow-lg p-10">
+                    <h3 class="text-xl font-bold text-dark mb-6">Send Us a Message</h3>
+                    <form onsubmit="event.preventDefault(); alert('Thank you! We will get back to you soon.');">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-brand transition" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input type="email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-brand transition" placeholder="john@example.com">
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-brand transition" placeholder="How can we help?">
+                        </div>
+                        <div class="mt-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea rows="5" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-300 focus:border-brand transition resize-none" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="mt-8 w-full bg-brand text-white py-3.5 rounded-xl font-semibold hover:bg-brand-dark transition shadow-lg shadow-teal-200">Send Message</button>
+                    </form>
+                </div>
+                <!-- Contact Information -->
+                <div class="md:col-span-2 bg-gradient-to-br from-brand to-brand-dark rounded-2xl shadow-lg p-10 text-white flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-xl font-bold mb-6">Contact Information</h3>
+                        <p class="text-teal-100 text-sm mb-8">Fill out the form and our team will get back to you within 24 hours.</p>
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-phone text-sm"></i>
+                                </div>
+                                <span class="text-sm">+20 123 456 7890</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-envelope text-sm"></i>
+                                </div>
+                                <span class="text-sm">info@growthhub.com</span>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-sm"></i>
+                                </div>
+                                <span class="text-sm">Cairo, Egypt</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="flex gap-4 mt-10">
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-brand transition duration-200">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-brand transition duration-200">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white hover:text-brand transition duration-200">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-gray-400 py-16">
+        <div class="max-w-7xl mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            <div>
+                <h3 class="text-2xl font-extrabold text-white mb-4">Growth<span class="text-brand">Hub</span></h3>
+                <p class="text-sm leading-relaxed">We help businesses grow through innovative digital marketing strategies and creative solutions.</p>
+                <div class="flex gap-3 mt-6">
+                    <a href="#" class="w-9 h-9 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                        <i class="fab fa-facebook-f text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                        <i class="fab fa-twitter text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                        <i class="fab fa-instagram text-sm"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 bg-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white hover:scale-110 transition duration-200">
+                        <i class="fab fa-linkedin-in text-sm"></i>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#home" class="hover:text-brand transition">Home</a></li>
+                    <li><a href="#services" class="hover:text-brand transition">Services</a></li>
+                    <li><a href="#team" class="hover:text-brand transition">Our Team</a></li>
+                    <li><a href="#about" class="hover:text-brand transition">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Services</h4>
+                <ul class="space-y-2 text-sm">
+                    <li>SEO Optimization</li>
+                    <li>Social Media Marketing</li>
+                    <li>Web Development</li>
+                    <li>Brand Strategy</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold mb-4">Contact Info</h4>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2"><i class="fas fa-envelope text-brand"></i> info@growthhub.com</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-phone text-brand"></i> +1 234 567 890</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-map-marker-alt text-brand"></i> 123 Business Ave, NY</li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-gray-800 text-center text-sm">
+            <p>&copy; 2026 GrowthHub. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
