@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NOVA — Premium Handcrafted Jewelry & Accessories. Discover timeless elegance." />
+  <meta name="keywords" content="luxury jewelry, accessories, watches, necklaces, earrings, rings, bracelets" />
+  <meta property="og:title" content="NOVA — Premium Jewelry & Accessories" />
+  <meta property="og:description" content="Discover timeless elegance with our curated handcrafted jewelry collection." />
+  <link href="./css/style.css" rel="stylesheet" />
+  <title>NOVA — Premium Jewelry &amp; Accessories</title>
+
+  <!-- ── Tailwind CSS CDN ── -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { poppins: ['Poppins', 'sans-serif'] },
+          colors: {
+            brand: { 400: '#22d3ee', 500: '#06b6d4', 600: '#0891b2' },
+            accent: { 400: '#a78bfa', 500: '#8b5cf6', 600: '#7c3aed' },
+          },
+          boxShadow: {
+            'glow':    '0 0 30px rgba(34,211,238,0.25)',
+            'glow-sm': '0 0 15px rgba(34,211,238,0.15)',
+            'accent':  '0 0 30px rgba(139,92,246,0.25)',
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- ── Google Font: Poppins ── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- ── Phosphor Icons ── -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+
+  <!-- ── Minimal animations that Tailwind can't do alone ── -->
+  <style>
+    /* Font base */
+    body { font-family: 'Poppins', sans-serif; }
+
+    /* Loading bar */
+    @keyframes loadFill { from { width:0% } to { width:100% } }
+    .loading-bar { animation: loadFill 2.2s cubic-bezier(.4,0,.2,1) forwards; }
+
+    /* Ticker marquee */
+    @keyframes tickerScroll { from { transform:translateX(0) } to { transform:translateX(-50%) } }
+    .ticker-track { animation: tickerScroll 32s linear infinite; }
+    .ticker-track:hover { animation-play-state: paused; }
+
+    /* Shimmer gradient text */
+    @keyframes shimmer { 0%{background-position:0% center} 100%{background-position:200% center} }
+    .text-shimmer {
+      background: linear-gradient(90deg,#22d3ee,#a78bfa,#22d3ee);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+
+    /* Float */
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+    .float-anim { animation: float 6s ease-in-out infinite; }
+
+    /* Pulse */
+    @keyframes pulse-fade { 0%,100%{opacity:.4} 50%{opacity:1} }
+    .pulse-fade { animation: pulse-fade 1.5s ease-in-out infinite; }
+
+    /* Scroll wheel */
+    @keyframes scrollWheel { 0%{transform:translateY(0);opacity:1} 100%{transform:translateY(8px);opacity:0} }
+    .scroll-wheel { animation: scrollWheel 1.5s ease-in-out infinite; }
+
+    /* Scroll Reveal */
+    .reveal        { opacity:0; transform:translateY(32px); transition:all .65s ease; }
+    .reveal-left   { opacity:0; transform:translateX(-40px); transition:all .65s ease; }
+    .reveal-right  { opacity:0; transform:translateX(40px); transition:all .65s ease; }
+    .reveal.visible,.reveal-left.visible,.reveal-right.visible { opacity:1; transform:none; }
+
+    /* Hamburger */
+    .ham-bar { display:block; height:2px; background:white; border-radius:999px; transition:all .3s ease; transform-origin:center; }
+    .ham-open .ham-bar:nth-child(1) { transform:translateY(8px) rotate(45deg); }
+    .ham-open .ham-bar:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .ham-open .ham-bar:nth-child(3) { transform:translateY(-8px) rotate(-45deg); }
+
+    /* Mobile menu */
+    .mobile-menu { transform:translateX(100%); transition:transform .4s cubic-bezier(.25,.46,.45,.94); }
+    .mobile-menu.open { transform:translateX(0); }
+
+    /* Cart panel */
+    .cart-panel { transform:translateX(100%); transition:transform .4s cubic-bezier(.25,.46,.45,.94); }
+    .cart-panel.open { transform:translateX(0); }
+
+    /* FAQ height */
+    .faq-body { max-height:0; overflow:hidden; transition:max-height .35s ease; }
+    .faq-body.open { max-height:320px; }
+
+    /* Toast */
+    @keyframes toastIn  { from{opacity:0;transform:translateY(20px) scale(.9)} to{opacity:1;transform:translateY(0) scale(1)} }
+    @keyframes toastOut { from{opacity:1;transform:scale(1)} to{opacity:0;transform:scale(.9)} }
+    .toast-in  { animation: toastIn  .4s cubic-bezier(.34,1.56,.64,1) forwards; }
+    .toast-out { animation: toastOut .3s ease forwards; }
+
+    /* Modal */
+    @keyframes modalIn { from{opacity:0;transform:translateY(28px) scale(.96)} to{opacity:1;transform:none} }
+    .modal-in { animation: modalIn .35s cubic-bezier(.34,1.56,.64,1); }
+
+    /* Badge bump */
+    @keyframes bump { 0%{transform:scale(1)} 50%{transform:scale(1.6)} 100%{transform:scale(1)} }
+    .bump { animation: bump .4s cubic-bezier(.34,1.56,.64,1); }
+
+    /* Lazy blur-up */
+    img[data-src] { filter:blur(8px); transition:filter .5s ease; }
+    img.loaded { filter:blur(0); }
+
+    /* Hero grid bg */
+    .hero-grid {
+      background-image:
+        linear-gradient(rgba(34,211,238,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,211,238,.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Active nav link */
+    .nav-link.active { color: #22d3ee; }
+    .mobile-nav-link.active { color:#22d3ee; background:rgba(34,211,238,.08); border-left-color:#22d3ee; }
+
+    /* Particle */
+    @keyframes particleFloat {
+      0%   { opacity:0; transform:translateY(0) scale(0); }
+      20%  { opacity:.7; transform:translateY(-20px) scale(1); }
+      80%  { opacity:.3; transform:translateY(-70px) scale(.8); }
+      100% { opacity:0; transform:translateY(-100px) scale(0); }
+    }
+    .particle { position:absolute; width:3px; height:3px; border-radius:50%; background:#22d3ee;
+                animation: particleFloat var(--dur, 8s) var(--delay, 0s) ease-in-out infinite; }
+
+    /* Testimonial slider */
+    .testimonials-wrapper { overflow:hidden; }
+    .testimonials-track-slide { display:flex; transition:transform .5s cubic-bezier(.25,.46,.45,.94); }
+    .testimonial-slide { min-width:100%; }
+    @media(min-width:768px){
+      .testimonial-slide{min-width:50%;}
+    }  
+    @media(min-width:1024px){
+      .testimonial-slide{min-width:33.333%;}
+    }
+
+    /* Rotating ring */
+    @keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    .rotate-slow  { animation: rotateSlow 30s linear infinite; }
+    .rotate-slow2 { animation: rotateSlow 20s linear infinite reverse; }
+
+    /* Stagger delays for grid children */
+    .stagger>*:nth-child(1){transition-delay:.0s}
+    .stagger>*:nth-child(2){transition-delay:.1s}
+    .stagger>*:nth-child(3){transition-delay:.2s}
+    .stagger>*:nth-child(4){transition-delay:.3s}
+    .stagger>*:nth-child(5){transition-delay:.4s}
+    .stagger>*:nth-child(6){transition-delay:.5s}
+    .stagger>*:nth-child(7){transition-delay:.6s}
+    .stagger>*:nth-child(8){transition-delay:.7s}
+    .stagger>*:nth-child(9){transition-delay:.8s}
+  </style>
+</head>
+
+<body class="bg-slate-950 text-white font-poppins overflow-x-hidden" id="top">
+
+  <!-- ══════════════════════════════════════════════════
+       LOADING SCREEN
+  ═══════════════════════════════════════════════════ -->
+  <div id="loading-screen" class="hidden fixed inset-0 z-[600] bg-slate-950 flex flex-col items-center justify-center gap-6 transition-opacity duration-700" role="status" aria-label="Loading">
+    <div class="flex flex-col items-center gap-5">
+      <!-- Logo mark -->
+      <div class="w-16 h-16 bg-gradient-to-br from-cyan-400 to-violet-600 rounded-2xl flex items-center justify-center shadow-glow float-anim">
+        <svg class="w-9 h-9 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 1l2.8 8.7H23l-7.4 5.4 2.8 8.7L12 19.4 5.6 23.8l2.8-8.7L1 9.7h8.2z"/>
+        </svg>
+      </div>
+      <p class="text-3xl font-black tracking-[.35em] text-shimmer">NOVA</p>
+      <!-- Progress bar -->
+      <div class="w-52 h-[3px] bg-slate-800 rounded-full overflow-hidden">
+        <div class="h-full loading-bar bg-gradient-to-r from-cyan-400 to-violet-500 rounded-full"></div>
+      </div>
+    </div>
+    <p class="text-[10px] tracking-[.25em] uppercase text-slate-500 pulse-fade">Crafting Elegance…</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       STICKY NAVBAR
+  ═══════════════════════════════════════════════════ -->
+  <header id="navbar" class="fixed top-0 left-0 right-0 z-[200] transition-all duration-300" role="banner">
+    <nav class="max-w-7xl mx-auto px-5 flex items-center justify-between gap-4 py-5 transition-all duration-300" id="nav-inner" aria-label="Main Navigation">
+
+      <!-- Brand -->
+      <a href="#hero" id="nav-logo" class="flex items-center gap-2.5 group flex-shrink-0" aria-label="NOVA Home">
+        <div class="w-9 h-9 bg-gradient-to-br from-cyan-400 to-violet-600 rounded-xl flex items-center justify-center shadow-glow-sm group-hover:shadow-glow transition-all duration-300">
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 1l2.8 8.7H23l-7.4 5.4 2.8 8.7L12 19.4 5.6 23.8l2.8-8.7L1 9.7h8.2z"/>
+          </svg>
+        </div>
+        <span class="text-xl font-black tracking-[.2em] text-white">NOVA</span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <ul class="hidden lg:flex items-center gap-0.5" role="list">
+        <li><a href="#hero"         class="nav-link px-3.5 py-2 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors duration-200 rounded-lg hover:bg-slate-800/40" data-section="hero">Home</a></li>
+        <li><a href="#about"        class="nav-link px-3.5 py-2 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors duration-200 rounded-lg hover:bg-slate-800/40" data-section="about">About</a></li>
+        <li><a href="#categories"   class="nav-link px-3.5 py-2 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors duration-200 rounded-lg hover:bg-slate-800/40" data-section="categories">Categories</a></li>
+        <li><a href="#products"     class="nav-link px-3.5 py-2 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors duration-200 rounded-lg hover:bg-slate-800/40" data-section="products">Shop</a></li>
+        <li><a href="#testimonials" class="nav-link px-3.5 py-2 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors duration-200 rounded-lg hover:bg-slate-800/40" data-section="testimonials">Reviews</a></li>
+        <li><a href="#faq"          class="nav-link px-3.5 py-2 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors duration-200 rounded-lg hover:bg-slate-800/40" data-section="faq">FAQ</a></li>
+        <li><a href="#contact"      class="nav-link px-3.5 py-2 text-sm font-medium text-slate-400 hover:text-cyan-400 transition-colors duration-200 rounded-lg hover:bg-slate-800/40" data-section="contact">Contact</a></li>
+      </ul>
+
+      <!-- Right actions -->
+      <div class="flex items-center gap-2">
+        <!-- Favorites -->
+        <button id="fav-btn" class="relative flex items-center justify-center w-10 h-10 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-cyan-400/50 text-slate-400 hover:text-cyan-400 rounded-xl transition-all duration-200" aria-label="View favourites">
+          <i class="ph ph-heart text-lg" aria-hidden="true"></i>
+          <span id="fav-count" class="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-[4px] bg-cyan-400 text-slate-900 text-[10px] font-bold rounded-full flex items-center justify-center leading-none">0</span>
+        </button>
+
+        <!-- Cart -->
+        <button id="cart-btn" class="relative flex items-center justify-center w-10 h-10 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-cyan-400/50 text-slate-400 hover:text-cyan-400 rounded-xl transition-all duration-200" aria-label="View cart" aria-expanded="false">
+          <i class="ph ph-shopping-bag text-lg" aria-hidden="true"></i>
+          <span id="cart-count" class="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-[4px] bg-violet-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">0</span>
+        </button>
+
+        <!-- Auth (desktop) -->
+        <div id="auth-buttons" class="hidden lg:flex items-center gap-2">
+          <a href="login.html" id="btn-login" class="px-4 py-2 text-xs font-semibold text-slate-300 hover:text-cyan-400 border border-slate-700 hover:border-cyan-400/50 rounded-full transition-all duration-200">Sign In</a>
+          <a href="register.html" id="btn-register" class="px-4 py-2 text-xs font-semibold text-slate-900 bg-gradient-to-r from-cyan-400 to-violet-500 hover:shadow-glow-sm rounded-full transition-all duration-200">Join Now</a>
+        </div>
+
+        <!-- Logged-in pill (hidden by default) -->
+        <div id="user-pill" class="hidden items-center gap-2 px-3 py-1.5 bg-slate-800 border border-slate-700 rounded-full text-xs font-medium text-cyan-400">
+          <i class="ph ph-user-circle text-base" aria-hidden="true"></i>
+          <span id="user-name-display">Guest</span>
+          <button id="btn-logout" class="text-slate-500 hover:text-red-400 transition-colors duration-200 ml-1" aria-label="Log out">
+            <i class="ph ph-sign-out" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Hamburger -->
+        <button id="hamburger" class="flex flex-col justify-center gap-[6px] w-10 h-10 p-2.5 bg-slate-800 border border-slate-700 hover:border-slate-600 rounded-xl transition-all duration-200 lg:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="ham-bar w-full"></span>
+          <span class="ham-bar w-full"></span>
+          <span class="ham-bar w-full"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ── Mobile Backdrop ── -->
+    <div id="mobile-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[190] opacity-0 invisible transition-all duration-300 lg:hidden"></div>
+
+    <!-- ── Mobile Menu (off-canvas) ── -->
+    <aside id="mobile-menu" class="mobile-menu fixed top-0 right-0 bottom-0 w-[min(320px,85vw)] bg-slate-900 border-l border-slate-800 z-[195] pt-24 px-6 pb-8 overflow-y-auto lg:hidden" role="dialog" aria-modal="true" aria-label="Mobile navigation" hidden>
+      <ul class="flex flex-col gap-1 mb-8" role="list">
+        <li><a href="#hero"         class="mobile-nav-link flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-cyan-400 hover:bg-cyan-400/5 border-l-[3px] border-transparent hover:border-cyan-400 rounded-r-xl transition-all duration-200" data-section="hero">Home</a></li>
+        <li><a href="#about"        class="mobile-nav-link flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-cyan-400 hover:bg-cyan-400/5 border-l-[3px] border-transparent hover:border-cyan-400 rounded-r-xl transition-all duration-200" data-section="about">About</a></li>
+        <li><a href="#categories"   class="mobile-nav-link flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-cyan-400 hover:bg-cyan-400/5 border-l-[3px] border-transparent hover:border-cyan-400 rounded-r-xl transition-all duration-200" data-section="categories">Categories</a></li>
+        <li><a href="#products"     class="mobile-nav-link flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-cyan-400 hover:bg-cyan-400/5 border-l-[3px] border-transparent hover:border-cyan-400 rounded-r-xl transition-all duration-200" data-section="products">Shop</a></li>
+        <li><a href="#testimonials" class="mobile-nav-link flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-cyan-400 hover:bg-cyan-400/5 border-l-[3px] border-transparent hover:border-cyan-400 rounded-r-xl transition-all duration-200" data-section="testimonials">Reviews</a></li>
+        <li><a href="#faq"          class="mobile-nav-link flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-cyan-400 hover:bg-cyan-400/5 border-l-[3px] border-transparent hover:border-cyan-400 rounded-r-xl transition-all duration-200" data-section="faq">FAQ</a></li>
+        <li><a href="#contact"      class="mobile-nav-link flex items-center px-4 py-3 text-sm font-medium text-slate-400 hover:text-cyan-400 hover:bg-cyan-400/5 border-l-[3px] border-transparent hover:border-cyan-400 rounded-r-xl transition-all duration-200" data-section="contact">Contact</a></li>
+      </ul>
+      <div class="flex flex-col gap-3 pt-6 border-t border-slate-800">
+        <a href="login.html"    class="flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-slate-300 border border-slate-700 hover:border-cyan-400/50 hover:text-cyan-400 rounded-full transition-all duration-200">Sign In</a>
+        <a href="register.html" class="flex items-center justify-center px-4 py-2.5 text-sm font-semibold text-slate-900 bg-gradient-to-r from-cyan-400 to-violet-500 hover:shadow-glow-sm rounded-full transition-all duration-200">Join Now</a>
+      </div>
+    </aside>
+
+    <!-- ── Cart Slide Panel ── -->
+    <div id="cart-panel" class="cart-panel fixed top-0 right-0 bottom-0 w-[min(400px,95vw)] bg-slate-900 border-l border-slate-800 z-[300] flex flex-col shadow-2xl" role="dialog" aria-modal="true" aria-label="Shopping Cart">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-5 py-4 border-b border-slate-800 flex-shrink-0">
+        <h2 class="text-base font-semibold text-white">Your Cart</h2>
+        <button id="cart-close" class="w-8 h-8 flex items-center justify-center bg-slate-800 hover:bg-red-500 border border-slate-700 hover:border-red-500 text-slate-400 hover:text-white rounded-lg transition-all duration-200" aria-label="Close cart">
+          <i class="ph ph-x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <!-- Items -->
+      <div id="cart-items-list" class="flex-1 overflow-y-auto p-4 flex flex-col gap-3"></div>
+      <!-- Footer -->
+      <div class="p-5 border-t border-slate-800 flex-shrink-0 flex flex-col gap-3">
+        <div class="flex justify-between items-center text-sm text-slate-400">
+          <span>Total</span>
+          <span id="cart-total" class="text-xl font-bold text-cyan-400">$0.00</span>
+        </div>
+        <button id="btn-checkout" class="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-sm font-semibold rounded-full hover:shadow-glow transition-all duration-300">
+          Checkout <i class="ph ph-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Cart backdrop -->
+    <div id="cart-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[295] opacity-0 invisible transition-all duration-300"></div>
+  </header>
+  <!-- END NAVBAR -->
+
+  <main>
+
+    <!-- ══════════════════════════════════════════════════
+         HERO SECTION
+    ═══════════════════════════════════════════════════ -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 hero-grid" aria-labelledby="hero-heading">
+      <!-- Decorative rings -->
+      <div class="absolute top-1/2 right-[-150px] -translate-y-1/2 w-[500px] h-[500px] border border-cyan-400/10 rounded-full rotate-slow pointer-events-none"></div>
+      <div class="absolute top-1/2 right-[-50px] -translate-y-1/2 w-[320px] h-[320px] border border-violet-500/10 rounded-full rotate-slow2 pointer-events-none"></div>
+      <!-- Gradient blobs -->
+      <div class="absolute top-[-100px] left-[-100px] w-[500px] h-[500px] bg-cyan-500/5 rounded-full blur-[120px] pointer-events-none"></div>
+      <div class="absolute bottom-[-100px] right-[-100px] w-[400px] h-[400px] bg-violet-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+      <!-- Particles -->
+      <div id="hero-particles" class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-5 py-32 flex flex-col lg:flex-row items-center gap-16">
+        <!-- Text -->
+        <div class="flex-1 text-center lg:text-left reveal-left">
+          <span class="inline-flex items-center gap-2 px-4 py-1.5 bg-cyan-400/10 border border-cyan-400/20 rounded-full text-xs font-semibold tracking-widest text-cyan-400 uppercase mb-6">
+            <i class="ph ph-sparkle" aria-hidden="true"></i> New Collection 2025
+          </span>
+          <h1 id="hero-heading" class="text-5xl md:text-6xl xl:text-7xl font-black leading-[1.08] tracking-tight text-white mb-6">
+            Wear Your<br/>
+            <span class="text-shimmer">Legacy</span><br/>
+            in Gems
+          </h1>
+          <p class="text-slate-400 text-base md:text-lg leading-relaxed max-w-lg mx-auto lg:mx-0 mb-8">
+            Handcrafted luxury jewelry born from the finest metals and gemstones — designed for those who set the standard, not follow it.
+          </p>
+          <div class="flex flex-wrap gap-4 justify-center lg:justify-start mb-12">
+            <a href="#products" class="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-sm font-semibold rounded-full hover:shadow-glow transition-all duration-300 hover:-translate-y-0.5">
+              Shop Now <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="#about" class="inline-flex items-center gap-2 px-7 py-3.5 border border-slate-700 hover:border-cyan-400/50 text-slate-300 hover:text-cyan-400 text-sm font-medium rounded-full transition-all duration-300">
+              Our Story <i class="ph ph-play-circle" aria-hidden="true"></i>
+            </a>
+          </div>
+          <!-- Stats -->
+          <div class="flex items-center justify-center lg:justify-start gap-8 pt-6 border-t border-slate-800">
+            <div class="text-center lg:text-left">
+              <strong class="block text-2xl font-bold text-cyan-400">12K+</strong>
+              <span class="text-[11px] text-slate-500 uppercase tracking-wider">Happy Clients</span>
+            </div>
+            <div class="w-px h-10 bg-slate-800"></div>
+            <div class="text-center lg:text-left">
+              <strong class="block text-2xl font-bold text-violet-400">500+</strong>
+              <span class="text-[11px] text-slate-500 uppercase tracking-wider">Unique Pieces</span>
+            </div>
+            <div class="w-px h-10 bg-slate-800"></div>
+            <div class="text-center lg:text-left">
+              <strong class="block text-2xl font-bold text-white">18K</strong>
+              <span class="text-[11px] text-slate-500 uppercase tracking-wider">Gold Standard</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual -->
+        <div class="relative flex-shrink-0 w-full max-w-sm reveal-right" aria-hidden="true">
+          <div class="relative rounded-3xl overflow-hidden border border-slate-700/50 shadow-2xl float-anim group">
+            <img
+              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80"
+              alt="Luxury gold necklace"
+              class="w-full h-[420px] object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="eager"
+            />
+            <!-- Overlay gradient -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 flex items-center gap-2 px-3 py-1.5 bg-slate-900/80 backdrop-blur-sm border border-slate-700/50 rounded-full text-xs font-semibold text-cyan-400">
+              <i class="ph ph-certificate" aria-hidden="true"></i> 18K Certified Gold
+            </div>
+          </div>
+          <!-- Floating card -->
+          <div class="absolute -bottom-5 -right-4 flex items-center gap-3 px-4 py-3 bg-slate-900 border border-slate-700 rounded-2xl shadow-xl">
+            <i class="ph-fill ph-star text-amber-400 text-2xl" aria-hidden="true"></i>
+            <div>
+              <strong class="block text-sm font-bold text-white">4.9 / 5</strong>
+              <span class="text-[10px] text-slate-500">Customer Rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <a href="#about" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-600 hover:text-cyan-400 transition-colors duration-300" aria-label="Scroll down">
+        <div class="w-5 h-8 border-2 border-current rounded-full flex justify-center pt-1.5">
+          <div class="w-[3px] h-2 bg-current rounded-full scroll-wheel"></div>
+        </div>
+        <span class="text-[9px] tracking-[.2em] uppercase">Scroll</span>
+      </a>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         TICKER BAR
+    ═══════════════════════════════════════════════════ -->
+    <div class="overflow-hidden border-y border-slate-800 bg-slate-900/50 py-3" aria-label="Announcements">
+      <div class="ticker-track flex gap-12 w-max">
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 whitespace-nowrap"><i class="ph ph-sparkle text-cyan-400" aria-hidden="true"></i> Free shipping on orders over $200</span>
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 whitespace-nowrap"><i class="ph ph-shield-check text-violet-400" aria-hidden="true"></i> Lifetime warranty on all pieces</span>
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 whitespace-nowrap"><i class="ph ph-recycle text-cyan-400" aria-hidden="true"></i> Ethically sourced materials</span>
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 whitespace-nowrap"><i class="ph ph-gift text-violet-400" aria-hidden="true"></i> Complimentary gift wrapping</span>
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 whitespace-nowrap"><i class="ph ph-sparkle text-cyan-400" aria-hidden="true"></i> Free shipping on orders over $200</span>
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 whitespace-nowrap"><i class="ph ph-shield-check text-violet-400" aria-hidden="true"></i> Lifetime warranty on all pieces</span>
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 whitespace-nowrap"><i class="ph ph-recycle text-cyan-400" aria-hidden="true"></i> Ethically sourced materials</span>
+        <span class="inline-flex items-center gap-2 text-sm font-medium text-slate-400 whitespace-nowrap"><i class="ph ph-gift text-violet-400" aria-hidden="true"></i> Complimentary gift wrapping</span>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════════════
+         ABOUT SECTION
+    ═══════════════════════════════════════════════════ -->
+    <section id="about" class="bg-slate-900" aria-labelledby="about-heading">
+      <div class="max-w-7xl mx-auto px-5 py-24 flex flex-col lg:flex-row items-center gap-16">
+        <!-- Visual -->
+        <div class="relative w-full max-w-md flex-shrink-0 reveal-left">
+          <div class="grid grid-cols-2 gap-3">
+            <img
+              src="https://images.unsplash.com/photo-1601121141461-9d6647bef0a1?w=500&q=80"
+              alt="Artisan crafting jewelry"
+              class="col-span-2 w-full h-56 object-cover rounded-2xl border border-slate-700/50 hover:border-cyan-400/30 transition-all duration-300"
+              loading="lazy"
+            />
+            <div class="h-36 rounded-xl bg-slate-800 border border-slate-700/50"></div>
+            <img
+              src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&q=80"
+              alt="Gold jewelry on velvet"
+              class="h-36 w-full object-cover rounded-xl border border-slate-700/50 hover:border-cyan-400/30 transition-all duration-300"
+              loading="lazy"
+            />
+          </div>
+          <!-- Experience badge -->
+          <div class="absolute -bottom-5 -left-5 px-5 py-4 bg-gradient-to-br from-cyan-500 to-violet-600 rounded-2xl shadow-glow text-center float-anim">
+            <strong class="block text-3xl font-black text-white">25+</strong>
+            <span class="text-[10px] text-white/80 uppercase tracking-wider">Years of Mastery</span>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="flex-1 reveal-right">
+          <p class="flex items-center gap-2 text-xs font-semibold tracking-[.15em] uppercase text-cyan-400 mb-3">
+            <span class="inline-block w-8 h-px bg-cyan-400/60"></span> Our Heritage <span class="inline-block w-8 h-px bg-cyan-400/60"></span>
+          </p>
+          <h2 id="about-heading" class="text-4xl md:text-5xl font-bold leading-tight text-white mb-5">
+            Crafted with Passion,<br/>
+            <span class="text-shimmer">Worn with Pride</span>
+          </h2>
+          <p class="text-slate-400 leading-relaxed mb-4">Founded in 1999, NOVA was born from a singular obsession: creating jewelry that tells a story. Every piece is hand-finished by master artisans who have devoted their lives to the craft.</p>
+          <p class="text-slate-400 leading-relaxed mb-8">We source only conflict-free gemstones and responsibly mined precious metals, ensuring your jewelry is as ethical as it is beautiful.</p>
+          <!-- Features grid -->
+          <div class="grid grid-cols-2 gap-3 mb-8">
+            <div class="group flex items-start gap-3 p-4 bg-slate-800/50 border border-slate-700/50 hover:border-cyan-400/30 rounded-xl transition-all duration-300">
+              <div class="w-9 h-9 flex items-center justify-center bg-cyan-400/10 border border-cyan-400/20 group-hover:bg-cyan-400 group-hover:border-cyan-400 rounded-lg text-cyan-400 group-hover:text-slate-900 transition-all duration-300 flex-shrink-0">
+                <i class="ph ph-leaf" aria-hidden="true"></i>
+              </div>
+              <div><strong class="block text-xs font-semibold text-white mb-0.5">Sustainable</strong><span class="text-[11px] text-slate-500">Eco-responsible sourcing</span></div>
+            </div>
+            <div class="group flex items-start gap-3 p-4 bg-slate-800/50 border border-slate-700/50 hover:border-cyan-400/30 rounded-xl transition-all duration-300">
+              <div class="w-9 h-9 flex items-center justify-center bg-violet-500/10 border border-violet-500/20 group-hover:bg-violet-500 group-hover:border-violet-500 rounded-lg text-violet-400 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                <i class="ph ph-medal" aria-hidden="true"></i>
+              </div>
+              <div><strong class="block text-xs font-semibold text-white mb-0.5">Certified</strong><span class="text-[11px] text-slate-500">International standards</span></div>
+            </div>
+            <div class="group flex items-start gap-3 p-4 bg-slate-800/50 border border-slate-700/50 hover:border-cyan-400/30 rounded-xl transition-all duration-300">
+              <div class="w-9 h-9 flex items-center justify-center bg-cyan-400/10 border border-cyan-400/20 group-hover:bg-cyan-400 group-hover:border-cyan-400 rounded-lg text-cyan-400 group-hover:text-slate-900 transition-all duration-300 flex-shrink-0">
+                <i class="ph ph-hands-clapping" aria-hidden="true"></i>
+              </div>
+              <div><strong class="block text-xs font-semibold text-white mb-0.5">Handcrafted</strong><span class="text-[11px] text-slate-500">Made by hand always</span></div>
+            </div>
+            <div class="group flex items-start gap-3 p-4 bg-slate-800/50 border border-slate-700/50 hover:border-cyan-400/30 rounded-xl transition-all duration-300">
+              <div class="w-9 h-9 flex items-center justify-center bg-violet-500/10 border border-violet-500/20 group-hover:bg-violet-500 group-hover:border-violet-500 rounded-lg text-violet-400 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                <i class="ph ph-truck" aria-hidden="true"></i>
+              </div>
+              <div><strong class="block text-xs font-semibold text-white mb-0.5">Free Shipping</strong><span class="text-[11px] text-slate-500">Orders above $200</span></div>
+            </div>
+          </div>
+          <a href="#products" class="inline-flex items-center gap-2 px-7 py-3.5 bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-sm font-semibold rounded-full hover:shadow-glow transition-all duration-300 hover:-translate-y-0.5">
+            Explore Collection <i class="ph ph-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         CATEGORIES SECTION
+    ═══════════════════════════════════════════════════ -->
+    <section id="categories" class="bg-slate-950" aria-labelledby="categories-heading">
+      <div class="max-w-7xl mx-auto px-5 py-24">
+        <div class="text-center mb-12 reveal">
+          <p class="flex items-center justify-center gap-2 text-xs font-semibold tracking-[.15em] uppercase text-cyan-400 mb-3">
+            <span class="inline-block w-8 h-px bg-cyan-400/60"></span> Browse by Category <span class="inline-block w-8 h-px bg-cyan-400/60"></span>
+          </p>
+          <h2 id="categories-heading" class="text-4xl md:text-5xl font-bold text-white mb-3">Find Your <span class="text-shimmer">Perfect Piece</span></h2>
+          <p class="text-slate-400 max-w-md mx-auto text-sm leading-relaxed">From everyday elegance to statement accessories — explore our curated categories.</p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 stagger" id="category-grid">
+          <!-- Category buttons injected + static -->
+          <button class="category-card group relative flex flex-col items-center justify-center gap-3 py-7 px-4 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-400/50 rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-sm category-card-active" data-filter="all" aria-pressed="true">
+            <div class="w-12 h-12 flex items-center justify-center bg-slate-700 group-hover:bg-cyan-400 border border-slate-600 group-hover:border-cyan-400 rounded-xl text-slate-400 group-hover:text-slate-900 text-xl transition-all duration-300">
+              <i class="ph ph-circles-four" aria-hidden="true"></i>
+            </div>
+            <span class="text-sm font-semibold text-slate-300 group-hover:text-white transition-colors duration-200">All Items</span>
+            <span class="absolute top-2.5 right-2.5 text-[10px] font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-1.5 py-0.5 rounded-full" id="count-all">9</span>
+          </button>
+          <button class="category-card group relative flex flex-col items-center justify-center gap-3 py-7 px-4 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-400/50 rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-sm" data-filter="Watches" aria-pressed="false">
+            <div class="w-12 h-12 flex items-center justify-center bg-slate-700 group-hover:bg-cyan-400 border border-slate-600 group-hover:border-cyan-400 rounded-xl text-slate-400 group-hover:text-slate-900 text-xl transition-all duration-300">
+              <i class="ph ph-watch" aria-hidden="true"></i>
+            </div>
+            <span class="text-sm font-semibold text-slate-300 group-hover:text-white transition-colors duration-200">Watches</span>
+            <span class="absolute top-2.5 right-2.5 text-[10px] font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-1.5 py-0.5 rounded-full">2</span>
+          </button>
+          <button class="category-card group relative flex flex-col items-center justify-center gap-3 py-7 px-4 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-400/50 rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-sm" data-filter="Necklace" aria-pressed="false">
+            <div class="w-12 h-12 flex items-center justify-center bg-slate-700 group-hover:bg-cyan-400 border border-slate-600 group-hover:border-cyan-400 rounded-xl text-slate-400 group-hover:text-slate-900 text-xl transition-all duration-300">
+              <i class="ph ph-star" aria-hidden="true"></i>
+            </div>
+            <span class="text-sm font-semibold text-slate-300 group-hover:text-white transition-colors duration-200">Necklaces</span>
+            <span class="absolute top-2.5 right-2.5 text-[10px] font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-1.5 py-0.5 rounded-full">3</span>
+          </button>
+          <button class="category-card group relative flex flex-col items-center justify-center gap-3 py-7 px-4 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-400/50 rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-sm" data-filter="Earrings" aria-pressed="false">
+            <div class="w-12 h-12 flex items-center justify-center bg-slate-700 group-hover:bg-cyan-400 border border-slate-600 group-hover:border-cyan-400 rounded-xl text-slate-400 group-hover:text-slate-900 text-xl transition-all duration-300">
+              <i class="ph ph-diamond" aria-hidden="true"></i>
+            </div>
+            <span class="text-sm font-semibold text-slate-300 group-hover:text-white transition-colors duration-200">Earrings</span>
+            <span class="absolute top-2.5 right-2.5 text-[10px] font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-1.5 py-0.5 rounded-full">1</span>
+          </button>
+          <button class="category-card group relative flex flex-col items-center justify-center gap-3 py-7 px-4 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-400/50 rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-sm" data-filter="Rings" aria-pressed="false">
+            <div class="w-12 h-12 flex items-center justify-center bg-slate-700 group-hover:bg-cyan-400 border border-slate-600 group-hover:border-cyan-400 rounded-xl text-slate-400 group-hover:text-slate-900 text-xl transition-all duration-300">
+              <i class="ph ph-ring" aria-hidden="true"></i>
+            </div>
+            <span class="text-sm font-semibold text-slate-300 group-hover:text-white transition-colors duration-200">Rings</span>
+            <span class="absolute top-2.5 right-2.5 text-[10px] font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-1.5 py-0.5 rounded-full">1</span>
+          </button>
+          <button class="category-card group relative flex flex-col items-center justify-center gap-3 py-7 px-4 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-400/50 rounded-2xl cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-glow-sm" data-filter="Bracelet" aria-pressed="false">
+            <div class="w-12 h-12 flex items-center justify-center bg-slate-700 group-hover:bg-cyan-400 border border-slate-600 group-hover:border-cyan-400 rounded-xl text-slate-400 group-hover:text-slate-900 text-xl transition-all duration-300">
+              <i class="ph ph-hand" aria-hidden="true"></i>
+            </div>
+            <span class="text-sm font-semibold text-slate-300 group-hover:text-white transition-colors duration-200">Bracelets</span>
+            <span class="absolute top-2.5 right-2.5 text-[10px] font-bold text-cyan-400 bg-cyan-400/10 border border-cyan-400/20 px-1.5 py-0.5 rounded-full">2</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         SHOP / PRODUCTS SECTION
+    ═══════════════════════════════════════════════════ -->
+    <section id="products" class="bg-slate-900" aria-labelledby="products-heading">
+      <div class="max-w-7xl mx-auto px-5 py-24">
+        <div class="text-center mb-10 reveal">
+          <p class="flex items-center justify-center gap-2 text-xs font-semibold tracking-[.15em] uppercase text-cyan-400 mb-3">
+            <span class="inline-block w-8 h-px bg-cyan-400/60"></span> Our Collection <span class="inline-block w-8 h-px bg-cyan-400/60"></span>
+          </p>
+          <h2 id="products-heading" class="text-4xl md:text-5xl font-bold text-white">Handpicked <span class="text-shimmer">Treasures</span></h2>
+        </div>
+
+        <!-- Toolbar -->
+        <div class="flex flex-col sm:flex-row flex-wrap gap-3 mb-8 p-4 bg-slate-800/50 border border-slate-700/50 rounded-2xl reveal">
+          <!-- Search -->
+          <div class="relative flex-1 min-w-[200px]">
+            <i class="ph ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500 text-base pointer-events-none" aria-hidden="true"></i>
+            <label for="searchBox" class="sr-only">Search products</label>
+            <input type="search" id="searchBox" placeholder="Search products…" autocomplete="off"
+              class="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-white text-sm rounded-xl outline-none transition-all duration-200 placeholder:text-slate-600" />
+          </div>
+          <!-- Search type -->
+          <div class="relative">
+            <label for="searchType" class="sr-only">Search by</label>
+            <select id="searchType" class="appearance-none pl-4 pr-9 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 text-slate-300 text-sm rounded-xl outline-none transition-all duration-200 cursor-pointer">
+              <option value="name">By Name</option>
+              <option value="category">By Category</option>
+            </select>
+            <i class="ph ph-caret-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs pointer-events-none" aria-hidden="true"></i>
+          </div>
+          <!-- Gender filter -->
+          <div class="flex gap-2" role="group" aria-label="Filter by gender">
+            <button class="gender-btn gender-btn-active px-4 py-2.5 bg-cyan-400/10 border border-cyan-400/30 text-cyan-400 text-xs font-semibold rounded-xl transition-all duration-200" data-gender="all" aria-pressed="true">All</button>
+            <button class="gender-btn px-4 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 text-slate-400 hover:text-white text-xs font-semibold rounded-xl transition-all duration-200" data-gender="women" aria-pressed="false">Women</button>
+            <button class="gender-btn px-4 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 text-slate-400 hover:text-white text-xs font-semibold rounded-xl transition-all duration-200" data-gender="men" aria-pressed="false">Men</button>
+          </div>
+          <!-- Sort -->
+          <div class="relative">
+            <label for="sortSelect" class="sr-only">Sort products</label>
+            <select id="sortSelect" class="appearance-none pl-4 pr-9 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 text-slate-300 text-sm rounded-xl outline-none transition-all duration-200 cursor-pointer">
+              <option value="default">Default</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="name-asc">Name: A–Z</option>
+            </select>
+            <i class="ph ph-caret-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs pointer-events-none" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- No results -->
+        <div id="no-results" class="hidden flex-col items-center justify-center py-20 gap-4 text-slate-600" role="status" aria-live="polite">
+          <i class="ph ph-magnifying-glass text-5xl opacity-30" aria-hidden="true"></i>
+          <p class="text-base">No products found. Try a different search.</p>
+        </div>
+
+        <!-- Products grid -->
+        <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 stagger" role="list" aria-label="Product listings"></div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         FEATURES STRIP
+    ═══════════════════════════════════════════════════ -->
+    <section class="bg-slate-950 border-y border-slate-800" aria-label="Why choose NOVA">
+      <div class="max-w-7xl mx-auto px-5 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="group flex items-center gap-4 p-5 bg-slate-900 border border-slate-800 hover:border-cyan-400/30 rounded-2xl transition-all duration-300 hover:-translate-y-1 reveal">
+          <div class="w-12 h-12 flex items-center justify-center bg-cyan-400/10 border border-cyan-400/20 group-hover:bg-cyan-400 group-hover:border-cyan-400 rounded-xl text-cyan-400 group-hover:text-slate-900 text-xl flex-shrink-0 transition-all duration-300">
+            <i class="ph ph-shield-check" aria-hidden="true"></i>
+          </div>
+          <div><strong class="block text-sm font-semibold text-white mb-0.5">Lifetime Guarantee</strong><span class="text-xs text-slate-500">We stand behind every piece</span></div>
+        </div>
+        <div class="group flex items-center gap-4 p-5 bg-slate-900 border border-slate-800 hover:border-violet-500/30 rounded-2xl transition-all duration-300 hover:-translate-y-1 reveal">
+          <div class="w-12 h-12 flex items-center justify-center bg-violet-500/10 border border-violet-500/20 group-hover:bg-violet-500 group-hover:border-violet-500 rounded-xl text-violet-400 group-hover:text-white text-xl flex-shrink-0 transition-all duration-300">
+            <i class="ph ph-truck" aria-hidden="true"></i>
+          </div>
+          <div><strong class="block text-sm font-semibold text-white mb-0.5">Free Express Shipping</strong><span class="text-xs text-slate-500">Orders over $200 ship free</span></div>
+        </div>
+        <div class="group flex items-center gap-4 p-5 bg-slate-900 border border-slate-800 hover:border-cyan-400/30 rounded-2xl transition-all duration-300 hover:-translate-y-1 reveal">
+          <div class="w-12 h-12 flex items-center justify-center bg-cyan-400/10 border border-cyan-400/20 group-hover:bg-cyan-400 group-hover:border-cyan-400 rounded-xl text-cyan-400 group-hover:text-slate-900 text-xl flex-shrink-0 transition-all duration-300">
+            <i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i>
+          </div>
+          <div><strong class="block text-sm font-semibold text-white mb-0.5">30-Day Returns</strong><span class="text-xs text-slate-500">Hassle-free return policy</span></div>
+        </div>
+        <div class="group flex items-center gap-4 p-5 bg-slate-900 border border-slate-800 hover:border-violet-500/30 rounded-2xl transition-all duration-300 hover:-translate-y-1 reveal">
+          <div class="w-12 h-12 flex items-center justify-center bg-violet-500/10 border border-violet-500/20 group-hover:bg-violet-500 group-hover:border-violet-500 rounded-xl text-violet-400 group-hover:text-white text-xl flex-shrink-0 transition-all duration-300">
+            <i class="ph ph-lock-key" aria-hidden="true"></i>
+          </div>
+          <div><strong class="block text-sm font-semibold text-white mb-0.5">Secure Payment</strong><span class="text-xs text-slate-500">SSL encrypted checkout</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         TESTIMONIALS SECTION
+    ═══════════════════════════════════════════════════ -->
+    <section id="testimonials" class="bg-slate-900 overflow-hidden" aria-labelledby="testimonials-heading">
+      <div class="max-w-7xl mx-auto px-5 py-24">
+        <div class="text-center mb-12 reveal">
+          <p class="flex items-center justify-center gap-2 text-xs font-semibold tracking-[.15em] uppercase text-cyan-400 mb-3">
+            <span class="inline-block w-8 h-px bg-cyan-400/60"></span> What Clients Say <span class="inline-block w-8 h-px bg-cyan-400/60"></span>
+          </p>
+          <h2 id="testimonials-heading" class="text-4xl md:text-5xl font-bold text-white">Loved by <span class="text-shimmer">Thousands</span></h2>
+        </div>
+
+        <!-- Slider wrapper -->
+        <div class="testimonials-wrapper reveal" role="region" aria-label="Customer testimonials" aria-live="polite">
+          <div class="testimonials-track-slide" id="testimonials-track">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-slide px-3">
+              <article class="group h-full flex flex-col gap-4 p-6 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-400/30 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative overflow-hidden" aria-label="Testimonial by Sophia R.">
+                <div class="absolute top-4 right-5 text-7xl font-black text-cyan-400/5 leading-none select-none font-serif">"</div>
+                <div class="flex gap-0.5 text-amber-400 text-sm" aria-label="5 out of 5 stars">
+                  <i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i>
+                </div>
+                <blockquote class="text-slate-400 text-sm leading-relaxed flex-1 italic">"The golden watch exceeded every expectation. The craftsmanship is extraordinary — you can feel the weight and quality the moment you put it on."</blockquote>
+                <footer class="flex items-center gap-3 pt-4 border-t border-slate-700/50">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Sophia R." class="w-10 h-10 rounded-full object-cover border-2 border-cyan-400/50 flex-shrink-0" loading="lazy" />
+                  <div><strong class="block text-sm font-semibold text-white">Sophia R.</strong><span class="text-[11px] text-slate-500">Verified Buyer · New York</span></div>
+                </footer>
+              </article>
+            </div>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-slide px-3">
+              <article class="group h-full flex flex-col gap-4 p-6 bg-slate-800/60 border border-slate-700/50 hover:border-violet-500/30 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative overflow-hidden" aria-label="Testimonial by Marcus T.">
+                <div class="absolute top-4 right-5 text-7xl font-black text-violet-400/5 leading-none select-none font-serif">"</div>
+                <div class="flex gap-0.5 text-amber-400 text-sm" aria-label="5 out of 5 stars">
+                  <i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i>
+                </div>
+                <blockquote class="text-slate-400 text-sm leading-relaxed flex-1 italic">"I gifted my wife the silver necklace set for our anniversary. She was absolutely speechless. The packaging alone was an experience. NOVA is a cut above the rest."</blockquote>
+                <footer class="flex items-center gap-3 pt-4 border-t border-slate-700/50">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Marcus T." class="w-10 h-10 rounded-full object-cover border-2 border-violet-400/50 flex-shrink-0" loading="lazy" />
+                  <div><strong class="block text-sm font-semibold text-white">Marcus T.</strong><span class="text-[11px] text-slate-500">Verified Buyer · London</span></div>
+                </footer>
+              </article>
+            </div>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-slide px-3">
+              <article class="group h-full flex flex-col gap-4 p-6 bg-slate-800/60 border border-slate-700/50 hover:border-cyan-400/30 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative overflow-hidden" aria-label="Testimonial by Isabelle M.">
+                <div class="absolute top-4 right-5 text-7xl font-black text-cyan-400/5 leading-none select-none font-serif">"</div>
+                <div class="flex gap-0.5 text-amber-400 text-sm" aria-label="5 out of 5 stars">
+                  <i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i><i class="ph-fill ph-star" aria-hidden="true"></i>
+                </div>
+                <blockquote class="text-slate-400 text-sm leading-relaxed flex-1 italic">"Ordered the earrings and a bracelet. Both arrived beautifully packaged. Customer service was impeccable when I had a sizing question."</blockquote>
+                <footer class="flex items-center gap-3 pt-4 border-t border-slate-700/50">
+                  <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=80" alt="Isabelle M." class="w-10 h-10 rounded-full object-cover border-2 border-cyan-400/50 flex-shrink-0" loading="lazy" />
+                  <div><strong class="block text-sm font-semibold text-white">Isabelle M.</strong><span class="text-[11px] text-slate-500">Verified Buyer · Paris</span></div>
+                </footer>
+              </article>
+            </div>
+            <!-- Testimonial 4 -->
+            <div class="testimonial-slide px-3">
+              <article class="group h-full flex flex-col gap-4 p-6 bg-slate-800/60 border border-slate-700/50 hover:border-violet-500/30 rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl relative overflow-hidden" aria-label="Testimonial by David K.">
+                <div class="absolute top-4 right-5 text-7xl font-black text-violet-400/5 leading-none select-none font-serif">"</div>
+                <div class="flex gap-0.5 text-sm" aria-label="4 out of 5 stars">
+                  <i class="ph-fill ph-star text-amber-400" aria-hidden="true"></i><i class="ph-fill ph-star text-amber-400" aria-hidden="true"></i><i class="ph-fill ph-star text-amber-400" aria-hidden="true"></i><i class="ph-fill ph-star text-amber-400" aria-hidden="true"></i><i class="ph ph-star text-slate-600" aria-hidden="true"></i>
+                </div>
+                <blockquote class="text-slate-400 text-sm leading-relaxed flex-1 italic">"The black watch is stunning and pairs perfectly with both formal and casual outfits. Fast delivery and top-notch presentation. Highly recommend NOVA."</blockquote>
+                <footer class="flex items-center gap-3 pt-4 border-t border-slate-700/50">
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80" alt="David K." class="w-10 h-10 rounded-full object-cover border-2 border-violet-400/50 flex-shrink-0" loading="lazy" />
+                  <div><strong class="block text-sm font-semibold text-white">David K.</strong><span class="text-[11px] text-slate-500">Verified Buyer · Dubai</span></div>
+                </footer>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slider controls -->
+        <div class="flex items-center justify-center gap-4 mt-8">
+          <button id="testimonial-prev" class="w-10 h-10 flex items-center justify-center bg-slate-800 hover:bg-cyan-400 border border-slate-700 hover:border-cyan-400 text-slate-400 hover:text-slate-900 rounded-xl transition-all duration-200" aria-label="Previous testimonial">
+            <i class="ph ph-caret-left" aria-hidden="true"></i>
+          </button>
+          <div id="slider-dots" class="flex gap-2" role="tablist" aria-label="Testimonials navigation"></div>
+          <button id="testimonial-next" class="w-10 h-10 flex items-center justify-center bg-slate-800 hover:bg-cyan-400 border border-slate-700 hover:border-cyan-400 text-slate-400 hover:text-slate-900 rounded-xl transition-all duration-200" aria-label="Next testimonial">
+            <i class="ph ph-caret-right" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         FAQ SECTION
+    ═══════════════════════════════════════════════════ -->
+    <section id="faq" class="bg-slate-950" aria-labelledby="faq-heading">
+      <div class="max-w-7xl mx-auto px-5 py-24">
+        <div class="text-center mb-12 reveal">
+          <p class="flex items-center justify-center gap-2 text-xs font-semibold tracking-[.15em] uppercase text-cyan-400 mb-3">
+            <span class="inline-block w-8 h-px bg-cyan-400/60"></span> Questions & Answers <span class="inline-block w-8 h-px bg-cyan-400/60"></span>
+          </p>
+          <h2 id="faq-heading" class="text-4xl md:text-5xl font-bold text-white mb-3">Frequently <span class="text-shimmer">Asked</span></h2>
+          <p class="text-slate-400 text-sm max-w-md mx-auto">Everything you need to know about NOVA products and services.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 max-w-5xl mx-auto">
+          <!-- Col 1 -->
+          <div class="flex flex-col gap-3">
+            <div class="faq-item group border border-slate-800 hover:border-slate-700 bg-slate-900 rounded-2xl overflow-hidden transition-all duration-300 reveal">
+              <button class="faq-question w-full flex items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-slate-300 hover:text-white text-left transition-colors duration-200" aria-expanded="false">
+                <span>What materials do you use in your jewelry?</span>
+                <i class="ph ph-plus text-cyan-400 flex-shrink-0 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-body px-5 pb-4 text-sm text-slate-400 leading-relaxed">We use 18K and 24K gold, sterling silver (925), platinum, and ethically sourced gemstones including diamonds, sapphires, rubies, and emeralds. All materials are certified conflict-free.</div>
+            </div>
+            <div class="faq-item group border border-slate-800 hover:border-slate-700 bg-slate-900 rounded-2xl overflow-hidden transition-all duration-300 reveal">
+              <button class="faq-question w-full flex items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-slate-300 hover:text-white text-left transition-colors duration-200" aria-expanded="false">
+                <span>How long does shipping take?</span>
+                <i class="ph ph-plus text-cyan-400 flex-shrink-0 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-body px-5 pb-4 text-sm text-slate-400 leading-relaxed">Standard shipping takes 3–5 business days. Express shipping (1–2 days) is available at checkout. International orders typically arrive within 7–14 business days. All orders over $200 receive free express shipping.</div>
+            </div>
+            <div class="faq-item group border border-slate-800 hover:border-slate-700 bg-slate-900 rounded-2xl overflow-hidden transition-all duration-300 reveal">
+              <button class="faq-question w-full flex items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-slate-300 hover:text-white text-left transition-colors duration-200" aria-expanded="false">
+                <span>Can I return or exchange my purchase?</span>
+                <i class="ph ph-plus text-cyan-400 flex-shrink-0 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-body px-5 pb-4 text-sm text-slate-400 leading-relaxed">Yes! We offer a 30-day hassle-free return and exchange policy. Items must be in their original unworn condition with all packaging. Custom engraved pieces are non-returnable.</div>
+            </div>
+          </div>
+          <!-- Col 2 -->
+          <div class="flex flex-col gap-3">
+            <div class="faq-item group border border-slate-800 hover:border-slate-700 bg-slate-900 rounded-2xl overflow-hidden transition-all duration-300 reveal">
+              <button class="faq-question w-full flex items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-slate-300 hover:text-white text-left transition-colors duration-200" aria-expanded="false">
+                <span>Do you offer custom engraving?</span>
+                <i class="ph ph-plus text-cyan-400 flex-shrink-0 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-body px-5 pb-4 text-sm text-slate-400 leading-relaxed">Absolutely! Many of our pieces can be personalized with custom engraving. Simply select the engraving option on the product page. Add 2–3 extra business days for engraved pieces.</div>
+            </div>
+            <div class="faq-item group border border-slate-800 hover:border-slate-700 bg-slate-900 rounded-2xl overflow-hidden transition-all duration-300 reveal">
+              <button class="faq-question w-full flex items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-slate-300 hover:text-white text-left transition-colors duration-200" aria-expanded="false">
+                <span>Is my payment information secure?</span>
+                <i class="ph ph-plus text-cyan-400 flex-shrink-0 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-body px-5 pb-4 text-sm text-slate-400 leading-relaxed">Your security is our priority. We use 256-bit SSL encryption and are fully PCI-DSS compliant. We accept all major credit cards, PayPal, and Apple Pay. We never store your card details.</div>
+            </div>
+            <div class="faq-item group border border-slate-800 hover:border-slate-700 bg-slate-900 rounded-2xl overflow-hidden transition-all duration-300 reveal">
+              <button class="faq-question w-full flex items-center justify-between gap-4 px-5 py-4 text-sm font-medium text-slate-300 hover:text-white text-left transition-colors duration-200" aria-expanded="false">
+                <span>How do I care for my jewelry?</span>
+                <i class="ph ph-plus text-cyan-400 flex-shrink-0 transition-transform duration-300"></i>
+              </button>
+              <div class="faq-body px-5 pb-4 text-sm text-slate-400 leading-relaxed">Store jewelry in the provided velvet pouch, away from moisture and direct sunlight. Clean gently with a soft lint-free cloth. Avoid contact with perfumes, chlorine, and harsh chemicals. A full care guide is included with every purchase.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════
+         CONTACT SECTION
+    ═══════════════════════════════════════════════════ -->
+    <section id="contact" class="bg-slate-900" aria-labelledby="contact-heading">
+      <div class="max-w-7xl mx-auto px-5 py-24 flex flex-col lg:flex-row gap-16">
+        <!-- Info -->
+        <div class="flex-shrink-0 w-full lg:max-w-sm reveal-left">
+          <p class="flex items-center gap-2 text-xs font-semibold tracking-[.15em] uppercase text-cyan-400 mb-3">
+            <span class="inline-block w-8 h-px bg-cyan-400/60"></span> Get in Touch
+          </p>
+          <h2 id="contact-heading" class="text-4xl font-bold text-white mb-4">We'd Love to<br/><span class="text-shimmer">Hear From You</span></h2>
+          <p class="text-slate-400 text-sm leading-relaxed mb-8">Whether you have questions about a specific piece, need help with sizing, or want to plan a bespoke creation — our team is here to help.</p>
+          <address class="not-italic flex flex-col gap-4 mb-8">
+            <div class="group flex items-start gap-4">
+              <div class="w-10 h-10 flex items-center justify-center bg-cyan-400/10 border border-cyan-400/20 group-hover:bg-cyan-400 group-hover:border-cyan-400 rounded-xl text-cyan-400 group-hover:text-slate-900 flex-shrink-0 transition-all duration-300">
+                <i class="ph ph-map-pin" aria-hidden="true"></i>
+              </div>
+              <div><strong class="block text-xs font-semibold text-white mb-0.5">Visit Us</strong><span class="text-xs text-slate-500">14 Goldsmith Lane, Mayfair, London W1K 3PP</span></div>
+            </div>
+            <div class="group flex items-start gap-4">
+              <div class="w-10 h-10 flex items-center justify-center bg-violet-500/10 border border-violet-500/20 group-hover:bg-violet-500 group-hover:border-violet-500 rounded-xl text-violet-400 group-hover:text-white flex-shrink-0 transition-all duration-300">
+                <i class="ph ph-phone" aria-hidden="true"></i>
+              </div>
+              <div><strong class="block text-xs font-semibold text-white mb-0.5">Call Us</strong><a href="tel:+441234567890" class="text-xs text-slate-500 hover:text-cyan-400 transition-colors duration-200">+44 (0) 123 456 7890</a></div>
+            </div>
+            <div class="group flex items-start gap-4">
+              <div class="w-10 h-10 flex items-center justify-center bg-cyan-400/10 border border-cyan-400/20 group-hover:bg-cyan-400 group-hover:border-cyan-400 rounded-xl text-cyan-400 group-hover:text-slate-900 flex-shrink-0 transition-all duration-300">
+                <i class="ph ph-envelope" aria-hidden="true"></i>
+              </div>
+              <div><strong class="block text-xs font-semibold text-white mb-0.5">Email Us</strong><a href="mailto:hello@novajewelry.com" class="text-xs text-slate-500 hover:text-cyan-400 transition-colors duration-200">hello@novajewelry.com</a></div>
+            </div>
+            <div class="group flex items-start gap-4">
+              <div class="w-10 h-10 flex items-center justify-center bg-violet-500/10 border border-violet-500/20 group-hover:bg-violet-500 group-hover:border-violet-500 rounded-xl text-violet-400 group-hover:text-white flex-shrink-0 transition-all duration-300">
+                <i class="ph ph-clock" aria-hidden="true"></i>
+              </div>
+              <div><strong class="block text-xs font-semibold text-white mb-0.5">Hours</strong><span class="text-xs text-slate-500">Mon – Sat: 9am – 7pm GMT</span></div>
+            </div>
+          </address>
+          <div class="flex gap-3" aria-label="Social media">
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-800 border border-slate-700 hover:border-cyan-400/50 hover:bg-cyan-400/10 text-slate-400 hover:text-cyan-400 rounded-xl transition-all duration-200 hover:-translate-y-0.5" aria-label="Instagram"><i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-800 border border-slate-700 hover:border-violet-500/50 hover:bg-violet-500/10 text-slate-400 hover:text-violet-400 rounded-xl transition-all duration-200 hover:-translate-y-0.5" aria-label="Facebook"><i class="ph ph-facebook-logo" aria-hidden="true"></i></a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-800 border border-slate-700 hover:border-cyan-400/50 hover:bg-cyan-400/10 text-slate-400 hover:text-cyan-400 rounded-xl transition-all duration-200 hover:-translate-y-0.5" aria-label="Pinterest"><i class="ph ph-pinterest-logo" aria-hidden="true"></i></a>
+            <a href="#" class="w-10 h-10 flex items-center justify-center bg-slate-800 border border-slate-700 hover:border-violet-500/50 hover:bg-violet-500/10 text-slate-400 hover:text-violet-400 rounded-xl transition-all duration-200 hover:-translate-y-0.5" aria-label="Twitter"><i class="ph ph-x-logo" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="flex-1 reveal-right">
+          <form id="contact-form" class="p-6 sm:p-8 bg-slate-800/50 border border-slate-700/50 rounded-2xl flex flex-col gap-5" novalidate aria-label="Contact form">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div class="flex flex-col gap-1.5">
+                <label for="contact-fname" class="text-xs font-medium text-slate-400">First Name <span class="text-cyan-400" aria-hidden="true">*</span></label>
+                <input type="text" id="contact-fname" name="firstName" placeholder="Jane" required autocomplete="given-name" class="px-4 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-white text-sm rounded-xl outline-none transition-all duration-200 placeholder:text-slate-600" />
+                <span class="text-[11px] text-red-400 min-h-[1rem]" id="err-fname" aria-live="polite"></span>
+              </div>
+              <div class="flex flex-col gap-1.5">
+                <label for="contact-lname" class="text-xs font-medium text-slate-400">Last Name <span class="text-cyan-400" aria-hidden="true">*</span></label>
+                <input type="text" id="contact-lname" name="lastName" placeholder="Doe" required autocomplete="family-name" class="px-4 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-white text-sm rounded-xl outline-none transition-all duration-200 placeholder:text-slate-600" />
+                <span class="text-[11px] text-red-400 min-h-[1rem]" id="err-lname" aria-live="polite"></span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label for="contact-email" class="text-xs font-medium text-slate-400">Email Address <span class="text-cyan-400" aria-hidden="true">*</span></label>
+              <input type="email" id="contact-email" name="email" placeholder="jane@example.com" required autocomplete="email" class="px-4 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-white text-sm rounded-xl outline-none transition-all duration-200 placeholder:text-slate-600" />
+              <span class="text-[11px] text-red-400 min-h-[1rem]" id="err-email" aria-live="polite"></span>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label for="contact-phone" class="text-xs font-medium text-slate-400">Phone Number</label>
+              <input type="tel" id="contact-phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" class="px-4 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-white text-sm rounded-xl outline-none transition-all duration-200 placeholder:text-slate-600" />
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label for="contact-subject" class="text-xs font-medium text-slate-400">Subject <span class="text-cyan-400" aria-hidden="true">*</span></label>
+              <div class="relative">
+                <select id="contact-subject" name="subject" required class="w-full appearance-none px-4 pr-9 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-slate-300 text-sm rounded-xl outline-none transition-all duration-200 cursor-pointer">
+                  <option value="" disabled selected>Select a topic…</option>
+                  <option value="product">Product Enquiry</option>
+                  <option value="order">Order &amp; Shipping</option>
+                  <option value="return">Returns &amp; Exchanges</option>
+                  <option value="custom">Custom &amp; Bespoke</option>
+                  <option value="other">Other</option>
+                </select>
+                <i class="ph ph-caret-down absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs pointer-events-none" aria-hidden="true"></i>
+              </div>
+              <span class="text-[11px] text-red-400 min-h-[1rem]" id="err-subject" aria-live="polite"></span>
+            </div>
+            <div class="flex flex-col gap-1.5">
+              <label for="contact-message" class="text-xs font-medium text-slate-400">Message <span class="text-cyan-400" aria-hidden="true">*</span></label>
+              <textarea id="contact-message" name="message" rows="5" placeholder="Tell us how we can help…" required class="px-4 py-2.5 bg-slate-900 border border-slate-700 hover:border-slate-600 focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/20 text-white text-sm rounded-xl outline-none transition-all duration-200 placeholder:text-slate-600 resize-y min-h-[130px]"></textarea>
+              <span class="text-[11px] text-red-400 min-h-[1rem]" id="err-message" aria-live="polite"></span>
+            </div>
+            <!-- Success -->
+            <div id="form-success" class="hidden items-center gap-2 px-4 py-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl text-sm text-emerald-400" role="alert" aria-live="assertive">
+              <i class="ph ph-check-circle text-lg flex-shrink-0" aria-hidden="true"></i>
+              Thank you! Your message has been sent. We'll reply within 24 hours.
+            </div>
+            <button type="submit" id="contact-submit" class="w-full flex items-center justify-center gap-2 py-3.5 bg-gradient-to-r from-cyan-500 to-violet-600 text-white text-sm font-semibold rounded-full hover:shadow-glow transition-all duration-300 hover:-translate-y-0.5">
+              Send Message <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════ -->
+  <footer class="bg-slate-950 border-t border-slate-800" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-5 pt-16 pb-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10">
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <a href="#hero" class="inline-flex items-center gap-2.5 mb-4" aria-label="NOVA Home">
+          <div class="w-9 h-9 bg-gradient-to-br from-cyan-400 to-violet-600 rounded-xl flex items-center justify-center shadow-glow-sm">
+            <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1l2.8 8.7H23l-7.4 5.4 2.8 8.7L12 19.4 5.6 23.8l2.8-8.7L1 9.7h8.2z"/></svg>
+          </div>
+          <span class="text-xl font-black tracking-[.2em] text-white">NOVA</span>
+        </a>
+        <p class="text-sm text-slate-500 leading-relaxed max-w-[260px] mb-5">Timeless jewelry crafted with passion. Elevating elegance since 1999.</p>
+        <div class="flex gap-3" aria-label="Social media">
+          <a href="#" class="w-9 h-9 flex items-center justify-center bg-slate-800 border border-slate-700 hover:border-cyan-400/50 hover:text-cyan-400 text-slate-500 rounded-lg transition-all duration-200 hover:-translate-y-0.5 text-sm" aria-label="Instagram"><i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
+          <a href="#" class="w-9 h-9 flex items-center justify-center bg-slate-800 border border-slate-700 hover:border-violet-500/50 hover:text-violet-400 text-slate-500 rounded-lg transition-all duration-200 hover:-translate-y-0.5 text-sm" aria-label="Facebook"><i class="ph ph-facebook-logo" aria-hidden="true"></i></a>
+          <a href="#" class="w-9 h-9 flex items-center justify-center bg-slate-800 border border-slate-700 hover:border-cyan-400/50 hover:text-cyan-400 text-slate-500 rounded-lg transition-all duration-200 hover:-translate-y-0.5 text-sm" aria-label="Pinterest"><i class="ph ph-pinterest-logo" aria-hidden="true"></i></a>
+          <a href="#" class="w-9 h-9 flex items-center justify-center bg-slate-800 border border-slate-700 hover:border-violet-500/50 hover:text-violet-400 text-slate-500 rounded-lg transition-all duration-200 hover:-translate-y-0.5 text-sm" aria-label="Twitter"><i class="ph ph-x-logo" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <!-- Shop -->
+      <nav aria-label="Shop navigation">
+        <h3 class="text-[11px] font-semibold tracking-[.12em] uppercase text-cyan-400 mb-4">Shop</h3>
+        <ul class="flex flex-col gap-2.5" role="list">
+          <li><a href="#products" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">All Jewelry</a></li>
+          <li><a href="#categories" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Watches</a></li>
+          <li><a href="#categories" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Necklaces</a></li>
+          <li><a href="#categories" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Earrings</a></li>
+          <li><a href="#categories" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Rings</a></li>
+          <li><a href="#categories" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Bracelets</a></li>
+        </ul>
+      </nav>
+      <!-- Company -->
+      <nav aria-label="Company navigation">
+        <h3 class="text-[11px] font-semibold tracking-[.12em] uppercase text-violet-400 mb-4">Company</h3>
+        <ul class="flex flex-col gap-2.5" role="list">
+          <li><a href="#about" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Our Story</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Careers</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Press</a></li>
+          <li><a href="#contact" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Contact</a></li>
+          <li><a href="#" class="text-sm text-slate-500 hover:text-white transition-colors duration-200">Sustainability</a></li>
+        </ul>
+      </nav>
+      <!-- Newsletter -->
+      <nav aria-label="Support and newsletter">
+        <h3 class="text-[11px] font-semibold tracking-[.12em] uppercase text-cyan-400 mb-4">Newsletter</h3>
+        <p class="text-xs text-slate-500 leading-relaxed mb-4">Join 12,000+ subscribers for early access and exclusive offers.</p>
+        <form id="newsletter-form" class="flex flex-col gap-2" novalidate>
+          <div class="flex overflow-hidden border border-slate-700 focus-within:border-cyan-400 focus-within:ring-2 focus-within:ring-cyan-400/20 rounded-xl bg-slate-900 transition-all duration-200">
+            <label for="newsletter-email" class="sr-only">Email for newsletter</label>
+            <input type="email" id="newsletter-email" placeholder="your@email.com" required class="flex-1 min-w-0 px-3.5 py-2.5 bg-transparent text-white text-sm outline-none placeholder:text-slate-600" />
+            <button type="submit" class="flex-shrink-0 w-10 bg-gradient-to-r from-cyan-500 to-violet-600 text-white flex items-center justify-center transition-all duration-200 hover:shadow-glow-sm text-sm" aria-label="Subscribe">
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div id="newsletter-msg" class="text-[11px] text-emerald-400 min-h-[1rem]" aria-live="polite"></div>
+          <p class="flex items-center gap-1.5 text-[10px] text-slate-600"><i class="ph ph-lock-simple" aria-hidden="true"></i> No spam. Unsubscribe anytime.</p>
+        </form>
+      </nav>
+    </div>
+    <!-- Lower bar -->
+    <div class="max-w-7xl mx-auto px-5 py-5 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-600">&copy; <span id="footer-year"></span> NOVA Jewelry. All rights reserved.</p>
+      <div class="flex flex-wrap gap-2" aria-label="Accepted payment methods">
+        <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] font-semibold text-slate-500 tracking-wide">VISA</span>
+        <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] font-semibold text-slate-500 tracking-wide">MC</span>
+        <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] font-semibold text-slate-500 tracking-wide">AMEX</span>
+        <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] font-semibold text-slate-500 tracking-wide">PayPal</span>
+        <span class="px-2 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] font-semibold text-slate-500 tracking-wide">Apple Pay</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Back To Top ── -->
+  <button id="back-to-top" class="fixed bottom-8 right-6 z-[100] w-12 h-12 flex items-center justify-center bg-gradient-to-br from-cyan-500 to-violet-600 text-white rounded-xl shadow-glow transition-all duration-300 translate-y-[80px] opacity-0 hover:-translate-y-1 hover:shadow-glow" aria-label="Back to top" hidden>
+    <i class="ph ph-arrow-up text-lg" aria-hidden="true"></i>
+  </button>
+
+  <!-- ── Quick-View Modal ── -->
+  <div id="quick-view-modal" class="hidden fixed inset-0 z-[400] bg-black/75 backdrop-blur-sm flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Product quick view" aria-hidden="true">
+    <div id="quick-view-content" class="modal-in relative bg-slate-900 border border-slate-700 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl"></div>
+  </div>
+
+  <!-- ── Toast Container ── -->
+  <div id="toast-container" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-[500] flex flex-col gap-2 pointer-events-none w-max max-w-[calc(100vw-2rem)]" aria-live="assertive" aria-atomic="true"></div>
+
+  <!-- ── Script ── -->
+  <script src="js/script.js"></script>
+</body>
+</html>

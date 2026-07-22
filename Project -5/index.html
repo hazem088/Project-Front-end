@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =====================================================
+       META & SEO
+  ====================================================== -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="LUX — Premium Handcrafted Jewelry & Accessories. Discover timeless elegance with our curated collection of watches, necklaces, earrings, rings and bracelets." />
+  <meta name="keywords" content="luxury jewelry, accessories, watches, necklaces, earrings, rings, bracelets, handcrafted" />
+  <meta name="author" content="LUX Jewelry" />
+  <meta property="og:title" content="LUX — Premium Jewelry & Accessories" />
+  <meta property="og:description" content="Discover timeless elegance with our curated collection of premium handcrafted jewelry." />
+  <meta property="og:type" content="website" />
+
+  <title>LUX — Premium Jewelry &amp; Accessories</title>
+
+  <!-- =====================================================
+       TAILWIND CSS (CDN)
+  ====================================================== -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    /* Tailwind custom theme extension */
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50:  '#fdf9ed',
+              100: '#faf0cc',
+              200: '#f5dc8a',
+              300: '#f0c44a',
+              400: '#e8a91e',
+              500: '#d4930f',
+              600: '#b8740a',
+              700: '#94550d',
+              800: '#7a4412',
+              900: '#673913',
+            },
+            obsidian: {
+              50:  '#f4f4f5',
+              100: '#e4e4e7',
+              200: '#c8c8cd',
+              300: '#a1a1aa',
+              400: '#71717a',
+              500: '#52525b',
+              600: '#3f3f46',
+              700: '#27272a',
+              800: '#18181b',
+              900: '#09090b',
+            },
+            blush: {
+              50:  '#fdf2f4',
+              100: '#fce7eb',
+              200: '#f9cfd7',
+              300: '#f3a8b7',
+              400: '#eb7a92',
+              500: '#de5572',
+              600: '#c93a5e',
+              700: '#a92b4d',
+              800: '#8d2744',
+              900: '#792440',
+            },
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow-gold': '0 0 30px rgba(212, 147, 15, 0.25)',
+            'glow-sm':   '0 0 15px rgba(212, 147, 15, 0.15)',
+            'card':      '0 8px 32px rgba(0,0,0,0.18)',
+            'card-hover':'0 20px 60px rgba(0,0,0,0.3)',
+          },
+          backgroundImage: {
+            'hero-gradient':    'linear-gradient(135deg, #09090b 0%, #1a1018 50%, #2a1c10 100%)',
+            'gold-gradient':    'linear-gradient(135deg, #d4930f 0%, #f0c44a 50%, #d4930f 100%)',
+            'card-gradient':    'linear-gradient(180deg, transparent 0%, rgba(9,9,11,0.85) 100%)',
+            'section-gradient': 'linear-gradient(135deg, #09090b 0%, #18181b 100%)',
+          },
+          animation: {
+            'float':        'float 6s ease-in-out infinite',
+            'shimmer':      'shimmer 2s linear infinite',
+            'pulse-gold':   'pulseGold 2s ease-in-out infinite',
+            'fade-in':      'fadeIn 0.6s ease forwards',
+            'slide-up':     'slideUp 0.6s ease forwards',
+            'slide-right':  'slideRight 0.6s ease forwards',
+          },
+          keyframes: {
+            float:      { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-12px)' } },
+            shimmer:    { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
+            pulseGold:  { '0%,100%': { boxShadow: '0 0 0 0 rgba(212,147,15,0.4)' }, '50%': { boxShadow: '0 0 0 12px rgba(212,147,15,0)' } },
+            fadeIn:     { from: { opacity: '0' }, to: { opacity: '1' } },
+            slideUp:    { from: { opacity: '0', transform: 'translateY(40px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            slideRight: { from: { opacity: '0', transform: 'translateX(-40px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- =====================================================
+       GOOGLE FONT — POPPINS
+  ====================================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <!-- =====================================================
+       PHOSPHOR ICONS (modern icon set)
+  ====================================================== -->
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1/src/index.js" defer></script>
+
+  <!-- =====================================================
+       CUSTOM STYLESHEET
+  ====================================================== -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="font-poppins bg-obsidian-900 text-white" id="top">
+
+  <!-- =====================================================
+       LOADING SCREEN
+       Shown on first page load, hidden via JS after assets are ready.
+  ====================================================== -->
+  <div id="loading-screen" role="status" aria-label="Loading" class="loading-screen">
+    <div class="loading-inner">
+      <!-- Animated logo mark -->
+      <div class="loading-logo">
+        <span class="loading-logo-text">LUX</span>
+        <div class="loading-bar-track">
+          <div class="loading-bar-fill" id="loading-bar"></div>
+        </div>
+      </div>
+      <p class="loading-tagline">Curating Elegance…</p>
+    </div>
+  </div>
+  <!-- END LOADING SCREEN -->
+
+  <!-- =====================================================
+       STICKY NAVBAR
+  ====================================================== -->
+  <header id="navbar" class="navbar-wrapper" role="banner">
+    <nav class="navbar-inner" aria-label="Main Navigation">
+
+      <!-- Brand logo -->
+      <a href="#hero" id="nav-logo" class="brand-logo" aria-label="LUX Home">
+        <span class="brand-icon">◈</span>
+        <span class="brand-name">LUX</span>
+      </a>
+
+      <!-- Desktop navigation links -->
+      <ul id="nav-links" class="nav-links" role="list">
+        <li><a href="#hero"         class="nav-link active" data-section="hero">Home</a></li>
+        <li><a href="#about"        class="nav-link"        data-section="about">About</a></li>
+        <li><a href="#categories"   class="nav-link"        data-section="categories">Categories</a></li>
+        <li><a href="#products"     class="nav-link"        data-section="products">Shop</a></li>
+        <li><a href="#testimonials" class="nav-link"        data-section="testimonials">Reviews</a></li>
+        <li><a href="#faq"          class="nav-link"        data-section="faq">FAQ</a></li>
+        <li><a href="#contact"      class="nav-link"        data-section="contact">Contact</a></li>
+      </ul>
+
+      <!-- Right actions: cart + auth -->
+      <div class="nav-actions">
+        <!-- Cart icon with counter -->
+        <button id="cart-btn" class="cart-btn" aria-label="View shopping cart" aria-expanded="false">
+          <i class="ph ph-shopping-bag" aria-hidden="true"></i>
+          <span id="cart-count" class="cart-count" aria-live="polite">0</span>
+        </button>
+
+        <!-- Favorites -->
+        <button id="fav-btn" class="fav-btn" aria-label="View favorites">
+          <i class="ph ph-heart" aria-hidden="true"></i>
+          <span id="fav-count" class="fav-count" aria-live="polite">0</span>
+        </button>
+
+        <!-- Auth buttons (show/hide based on login state) -->
+        <div id="auth-buttons" class="auth-buttons">
+          <a href="login.html"    id="btn-login"    class="btn-nav-outline">Sign In</a>
+          <a href="register.html" id="btn-register" class="btn-nav-solid">Join Now</a>
+        </div>
+
+        <!-- Logged-in user pill (hidden by default) -->
+        <div id="user-pill" class="user-pill hidden" aria-live="polite">
+          <i class="ph ph-user-circle" aria-hidden="true"></i>
+          <span id="user-name-display">Guest</span>
+          <button id="btn-logout" class="logout-btn" aria-label="Log out">
+            <i class="ph ph-sign-out" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <!-- Mobile hamburger toggle -->
+        <button id="hamburger" class="hamburger-btn" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-menu">
+          <span class="ham-bar ham-bar-1"></span>
+          <span class="ham-bar ham-bar-2"></span>
+          <span class="ham-bar ham-bar-3"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ====================================================
+         MOBILE MENU (off-canvas slide)
+    ===================================================== -->
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobile navigation" hidden>
+      <div class="mobile-menu-inner">
+        <ul class="mobile-nav-links" role="list">
+          <li><a href="#hero"         class="mobile-nav-link" data-section="hero">Home</a></li>
+          <li><a href="#about"        class="mobile-nav-link" data-section="about">About</a></li>
+          <li><a href="#categories"   class="mobile-nav-link" data-section="categories">Categories</a></li>
+          <li><a href="#products"     class="mobile-nav-link" data-section="products">Shop</a></li>
+          <li><a href="#testimonials" class="mobile-nav-link" data-section="testimonials">Reviews</a></li>
+          <li><a href="#faq"          class="mobile-nav-link" data-section="faq">FAQ</a></li>
+          <li><a href="#contact"      class="mobile-nav-link" data-section="contact">Contact</a></li>
+        </ul>
+        <div class="mobile-auth-btns">
+          <a href="login.html"    class="btn-nav-outline w-full text-center">Sign In</a>
+          <a href="register.html" class="btn-nav-solid w-full text-center mt-3">Join Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Dropdown Panel -->
+    <div id="cart-panel" class="cart-panel hidden" role="dialog" aria-modal="true" aria-label="Shopping Cart">
+      <div class="cart-panel-header">
+        <h2 class="cart-panel-title">Your Cart</h2>
+        <button id="cart-close" class="cart-close-btn" aria-label="Close cart">
+          <i class="ph ph-x" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div id="cart-items-list" class="cart-items-list">
+        <!-- dynamically populated -->
+      </div>
+      <div class="cart-panel-footer">
+        <div class="cart-total-row">
+          <span>Total</span>
+          <span id="cart-total" class="cart-total-amount">$0.00</span>
+        </div>
+        <button class="btn-checkout" id="btn-checkout">Checkout <i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </header>
+  <!-- END NAVBAR -->
+
+  <main id="main-content">
+
+    <!-- =====================================================
+         HERO SECTION
+    ====================================================== -->
+    <section id="hero" class="hero-section" aria-labelledby="hero-heading">
+      <!-- Decorative background elements -->
+      <div class="hero-bg-ring hero-ring-1" aria-hidden="true"></div>
+      <div class="hero-bg-ring hero-ring-2" aria-hidden="true"></div>
+      <div class="hero-particles" aria-hidden="true" id="hero-particles"></div>
+
+      <div class="hero-content">
+        <!-- Left: text -->
+        <div class="hero-text reveal-left">
+          <span class="hero-badge">
+            <i class="ph ph-sparkle" aria-hidden="true"></i>
+            New Collection 2025
+          </span>
+          <h1 id="hero-heading" class="hero-title">
+            Wear Your
+            <span class="hero-title-accent">Story</span>
+            in Gold
+          </h1>
+          <p class="hero-subtitle">
+            Handcrafted luxury jewelry that transcends time. Each piece is a masterwork — born from the finest metals and gemstones, designed for those who appreciate the extraordinary.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#products" class="btn-primary-cta" id="btn-shop-now">
+              Shop Now
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="#about" class="btn-ghost-cta">
+              Our Story
+              <i class="ph ph-play-circle" aria-hidden="true"></i>
+            </a>
+          </div>
+          <!-- Stats row -->
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>12K+</strong>
+              <span>Happy Clients</span>
+            </div>
+            <div class="hero-stat-divider" aria-hidden="true"></div>
+            <div class="hero-stat">
+              <strong>500+</strong>
+              <span>Unique Pieces</span>
+            </div>
+            <div class="hero-stat-divider" aria-hidden="true"></div>
+            <div class="hero-stat">
+              <strong>18K</strong>
+              <span>Gold Standard</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: floating jewelry showcase card -->
+        <div class="hero-visual reveal-right" aria-hidden="true">
+          <div class="hero-showcase-card animate-float">
+            <img
+              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80"
+              alt="Luxury gold necklace on dark background"
+              class="hero-showcase-img"
+              loading="eager"
+            />
+            <div class="hero-card-badge">
+              <i class="ph ph-certificate" aria-hidden="true"></i>
+              18K Certified Gold
+            </div>
+          </div>
+          <!-- Floating mini-card -->
+          <div class="hero-float-card">
+            <i class="ph ph-star-four" aria-hidden="true"></i>
+            <div>
+              <strong>4.9/5</strong>
+              <span>Customer Rating</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll indicator -->
+      <a href="#about" class="scroll-indicator" aria-label="Scroll to about section">
+        <span class="scroll-mouse">
+          <span class="scroll-wheel"></span>
+        </span>
+        <span class="scroll-text">Scroll</span>
+      </a>
+    </section>
+    <!-- END HERO -->
+
+    <!-- =====================================================
+         TICKER / MARQUEE ANNOUNCEMENT BAR
+    ====================================================== -->
+    <div class="ticker-bar" aria-label="Announcements">
+      <div class="ticker-track">
+        <span class="ticker-item"><i class="ph ph-sparkle" aria-hidden="true"></i> Free shipping on orders over $200</span>
+        <span class="ticker-item"><i class="ph ph-shield-check" aria-hidden="true"></i> Lifetime warranty on all pieces</span>
+        <span class="ticker-item"><i class="ph ph-recycle" aria-hidden="true"></i> Ethically sourced materials</span>
+        <span class="ticker-item"><i class="ph ph-gift" aria-hidden="true"></i> Complimentary gift wrapping</span>
+        <span class="ticker-item"><i class="ph ph-sparkle" aria-hidden="true"></i> Free shipping on orders over $200</span>
+        <span class="ticker-item"><i class="ph ph-shield-check" aria-hidden="true"></i> Lifetime warranty on all pieces</span>
+        <span class="ticker-item"><i class="ph ph-recycle" aria-hidden="true"></i> Ethically sourced materials</span>
+        <span class="ticker-item"><i class="ph ph-gift" aria-hidden="true"></i> Complimentary gift wrapping</span>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         ABOUT SECTION
+    ====================================================== -->
+    <section id="about" class="about-section" aria-labelledby="about-heading">
+      <div class="section-container">
+        <!-- Left: image collage -->
+        <div class="about-visual reveal-left">
+          <div class="about-img-grid">
+            <img
+              src="https://images.unsplash.com/photo-1601121141461-9d6647bef0a1?w=500&q=80"
+              alt="Artisan crafting jewelry in workshop"
+              class="about-img-main"
+              loading="lazy"
+            />
+            <img
+              src="https://images.unsplash.com/photo-1598560917807-1bae44bd2be8?w=400&q=80"
+              alt="Gold jewelry pieces laid on velvet"
+              class="about-img-secondary"
+              loading="lazy"
+            />
+          </div>
+          <div class="about-experience-badge">
+            <strong>25+</strong>
+            <span>Years of Mastery</span>
+          </div>
+        </div>
+
+        <!-- Right: text -->
+        <div class="about-text reveal-right">
+          <p class="section-eyebrow">Our Heritage</p>
+          <h2 id="about-heading" class="section-title">
+            Crafted with Passion,<br />
+            <span class="text-gradient-gold">Worn with Pride</span>
+          </h2>
+          <p class="about-desc">
+            Founded in 1999, LUX was born from a singular obsession: creating jewelry that tells a story. Every piece in our collection is hand-finished by master artisans who have devoted their lives to the craft.
+          </p>
+          <p class="about-desc">
+            We source only conflict-free gemstones and responsibly mined precious metals, ensuring that your jewelry is as ethical as it is beautiful.
+          </p>
+          <!-- Feature pills -->
+          <div class="about-features">
+            <div class="about-feature-item">
+              <div class="about-feature-icon">
+                <i class="ph ph-leaf" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>Sustainable</strong>
+                <span>Eco-responsible sourcing</span>
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <div class="about-feature-icon">
+                <i class="ph ph-medal" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>Certified</strong>
+                <span>International quality standards</span>
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <div class="about-feature-icon">
+                <i class="ph ph-hands-clapping" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>Handcrafted</strong>
+                <span>Every piece made by hand</span>
+              </div>
+            </div>
+            <div class="about-feature-item">
+              <div class="about-feature-icon">
+                <i class="ph ph-truck" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>Free Shipping</strong>
+                <span>On orders above $200</span>
+              </div>
+            </div>
+          </div>
+          <a href="#products" class="btn-primary-cta mt-8 inline-flex">
+            Explore Collection
+            <i class="ph ph-arrow-right" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+    <!-- END ABOUT -->
+
+    <!-- =====================================================
+         CATEGORIES SECTION
+    ====================================================== -->
+    <section id="categories" class="categories-section" aria-labelledby="categories-heading">
+      <div class="section-container flex-col">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Browse by Category</p>
+          <h2 id="categories-heading" class="section-title">
+            Find Your <span class="text-gradient-gold">Perfect Piece</span>
+          </h2>
+          <p class="section-subtitle">From everyday elegance to statement accessories, explore our curated categories.</p>
+        </div>
+
+        <!-- Category filter cards (also act as quick filters for products) -->
+        <div class="categories-grid">
+          <button class="category-card category-card-active reveal-up" data-filter="all" aria-pressed="true" id="cat-all">
+            <div class="category-card-icon">
+              <i class="ph ph-circles-four" aria-hidden="true"></i>
+            </div>
+            <span class="category-card-label">All Items</span>
+            <span class="category-card-count" id="count-all">9</span>
+          </button>
+
+          <button class="category-card reveal-up" data-filter="Watches" aria-pressed="false" id="cat-watches">
+            <div class="category-card-icon">
+              <i class="ph ph-watch" aria-hidden="true"></i>
+            </div>
+            <span class="category-card-label">Watches</span>
+            <span class="category-card-count" id="count-watches">2</span>
+          </button>
+
+          <button class="category-card reveal-up" data-filter="Necklace" aria-pressed="false" id="cat-necklaces">
+            <div class="category-card-icon">
+              <i class="ph ph-star" aria-hidden="true"></i>
+            </div>
+            <span class="category-card-label">Necklaces</span>
+            <span class="category-card-count" id="count-necklaces">3</span>
+          </button>
+
+          <button class="category-card reveal-up" data-filter="Earrings" aria-pressed="false" id="cat-earrings">
+            <div class="category-card-icon">
+              <i class="ph ph-diamond" aria-hidden="true"></i>
+            </div>
+            <span class="category-card-label">Earrings</span>
+            <span class="category-card-count" id="count-earrings">1</span>
+          </button>
+
+          <button class="category-card reveal-up" data-filter="Rings" aria-pressed="false" id="cat-rings">
+            <div class="category-card-icon">
+              <i class="ph ph-ring" aria-hidden="true"></i>
+            </div>
+            <span class="category-card-label">Rings</span>
+            <span class="category-card-count" id="count-rings">1</span>
+          </button>
+
+          <button class="category-card reveal-up" data-filter="Bracelet" aria-pressed="false" id="cat-bracelets">
+            <div class="category-card-icon">
+              <i class="ph ph-hand" aria-hidden="true"></i>
+            </div>
+            <span class="category-card-label">Bracelets</span>
+            <span class="category-card-count" id="count-bracelets">2</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- END CATEGORIES -->
+
+    <!-- =====================================================
+         SHOP / PRODUCTS SECTION
+    ====================================================== -->
+    <section id="products" class="products-section" aria-labelledby="products-heading">
+      <div class="section-container flex-col">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Our Collection</p>
+          <h2 id="products-heading" class="section-title">
+            Handpicked <span class="text-gradient-gold">Treasures</span>
+          </h2>
+        </div>
+
+        <!-- Search & filter toolbar -->
+        <div class="shop-toolbar reveal-up" role="search" aria-label="Product search and filters">
+          <div class="search-group">
+            <label for="searchBox" class="sr-only">Search products</label>
+            <i class="ph ph-magnifying-glass search-icon" aria-hidden="true"></i>
+            <input
+              type="search"
+              id="searchBox"
+              name="search"
+              class="search-input"
+              placeholder="Search products…"
+              aria-label="Search products"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="filter-group">
+            <label for="searchType" class="sr-only">Search by</label>
+            <select id="searchType" name="searchType" class="filter-select" aria-label="Search by field">
+              <option value="name">By Name</option>
+              <option value="category">By Category</option>
+            </select>
+          </div>
+
+          <div class="gender-filter-group" role="group" aria-label="Filter by gender">
+            <button class="gender-btn gender-btn-active" data-gender="all"  id="gender-all"   aria-pressed="true">All</button>
+            <button class="gender-btn"                   data-gender="women" id="gender-women" aria-pressed="false">Women</button>
+            <button class="gender-btn"                   data-gender="men"   id="gender-men"   aria-pressed="false">Men</button>
+          </div>
+
+          <div class="sort-group">
+            <label for="sortSelect" class="sr-only">Sort products</label>
+            <select id="sortSelect" name="sort" class="filter-select" aria-label="Sort products">
+              <option value="default">Default</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-asc">Name: A–Z</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- No results message (hidden by default) -->
+        <div id="no-results" class="no-results hidden" role="status" aria-live="polite">
+          <i class="ph ph-magnifying-glass" aria-hidden="true"></i>
+          <p>No products found. Try a different search.</p>
+        </div>
+
+        <!-- Products grid — populated by JS -->
+        <div id="products-grid" class="products-grid" role="list" aria-label="Product listings">
+          <!-- Product cards injected here by script.js -->
+        </div>
+      </div>
+    </section>
+    <!-- END PRODUCTS -->
+
+    <!-- =====================================================
+         FEATURES / USP STRIP
+    ====================================================== -->
+    <section class="features-section" aria-label="Why choose LUX">
+      <div class="features-inner">
+        <div class="feature-item reveal-up">
+          <div class="feature-icon-wrap">
+            <i class="ph ph-shield-check" aria-hidden="true"></i>
+          </div>
+          <div class="feature-text">
+            <strong>Lifetime Guarantee</strong>
+            <span>We stand behind every piece</span>
+          </div>
+        </div>
+        <div class="feature-item reveal-up">
+          <div class="feature-icon-wrap">
+            <i class="ph ph-truck" aria-hidden="true"></i>
+          </div>
+          <div class="feature-text">
+            <strong>Free Express Shipping</strong>
+            <span>Orders over $200 ship free</span>
+          </div>
+        </div>
+        <div class="feature-item reveal-up">
+          <div class="feature-icon-wrap">
+            <i class="ph ph-arrow-counter-clockwise" aria-hidden="true"></i>
+          </div>
+          <div class="feature-text">
+            <strong>30-Day Returns</strong>
+            <span>Hassle-free return policy</span>
+          </div>
+        </div>
+        <div class="feature-item reveal-up">
+          <div class="feature-icon-wrap">
+            <i class="ph ph-lock-key" aria-hidden="true"></i>
+          </div>
+          <div class="feature-text">
+            <strong>Secure Payment</strong>
+            <span>SSL encrypted checkout</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END FEATURES -->
+
+    <!-- =====================================================
+         TESTIMONIALS SECTION
+    ====================================================== -->
+    <section id="testimonials" class="testimonials-section" aria-labelledby="testimonials-heading">
+      <div class="section-container flex-col">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">What Clients Say</p>
+          <h2 id="testimonials-heading" class="section-title">
+            Loved by <span class="text-gradient-gold">Thousands</span>
+          </h2>
+        </div>
+
+        <!-- Testimonials carousel wrapper -->
+        <div class="testimonials-slider" role="region" aria-label="Customer testimonials" aria-live="polite">
+          <div class="testimonials-track" id="testimonials-track">
+
+            <!-- Testimonial 1 -->
+            <article class="testimonial-card reveal-up" aria-label="Testimonial by Sophia R.">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+              </div>
+              <blockquote class="testimonial-text">
+                "The golden watch I purchased exceeded every expectation. The craftsmanship is extraordinary — you can feel the weight and quality the moment you put it on."
+              </blockquote>
+              <footer class="testimonial-author">
+                <img
+                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80"
+                  alt="Sophia R."
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div>
+                  <strong>Sophia R.</strong>
+                  <span>Verified Buyer · New York</span>
+                </div>
+              </footer>
+            </article>
+
+            <!-- Testimonial 2 -->
+            <article class="testimonial-card reveal-up" aria-label="Testimonial by Marcus T.">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+              </div>
+              <blockquote class="testimonial-text">
+                "I gifted my wife the silver necklace set for our anniversary. She was absolutely speechless. The packaging alone was an experience. LUX is a cut above the rest."
+              </blockquote>
+              <footer class="testimonial-author">
+                <img
+                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80"
+                  alt="Marcus T."
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div>
+                  <strong>Marcus T.</strong>
+                  <span>Verified Buyer · London</span>
+                </div>
+              </footer>
+            </article>
+
+            <!-- Testimonial 3 -->
+            <article class="testimonial-card reveal-up" aria-label="Testimonial by Isabelle M.">
+              <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+              </div>
+              <blockquote class="testimonial-text">
+                "Ordered the rose gold earrings and a bracelet. Both arrived in stunning condition, beautifully packaged. Customer service was impeccable when I had a sizing question."
+              </blockquote>
+              <footer class="testimonial-author">
+                <img
+                  src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&q=80"
+                  alt="Isabelle M."
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div>
+                  <strong>Isabelle M.</strong>
+                  <span>Verified Buyer · Paris</span>
+                </div>
+              </footer>
+            </article>
+
+            <!-- Testimonial 4 -->
+            <article class="testimonial-card reveal-up" aria-label="Testimonial by David K.">
+              <div class="testimonial-stars" aria-label="4 out of 5 stars">
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph-fill ph-star" aria-hidden="true"></i>
+                <i class="ph ph-star" aria-hidden="true"></i>
+              </div>
+              <blockquote class="testimonial-text">
+                "The black watch is stunning and pairs perfectly with both formal and casual outfits. Delivery was fast and the presentation was top notch. Highly recommend LUX."
+              </blockquote>
+              <footer class="testimonial-author">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80"
+                  alt="David K."
+                  class="testimonial-avatar"
+                  loading="lazy"
+                />
+                <div>
+                  <strong>David K.</strong>
+                  <span>Verified Buyer · Dubai</span>
+                </div>
+              </footer>
+            </article>
+
+          </div><!-- /.testimonials-track -->
+
+          <!-- Slider controls -->
+          <div class="slider-controls">
+            <button id="testimonial-prev" class="slider-btn" aria-label="Previous testimonial">
+              <i class="ph ph-caret-left" aria-hidden="true"></i>
+            </button>
+            <div class="slider-dots" id="slider-dots" role="tablist" aria-label="Testimonial navigation">
+              <!-- Dots injected by JS -->
+            </div>
+            <button id="testimonial-next" class="slider-btn" aria-label="Next testimonial">
+              <i class="ph ph-caret-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END TESTIMONIALS -->
+
+    <!-- =====================================================
+         FAQ SECTION
+    ====================================================== -->
+    <section id="faq" class="faq-section" aria-labelledby="faq-heading">
+      <div class="section-container flex-col">
+        <div class="section-header reveal-up">
+          <p class="section-eyebrow">Questions &amp; Answers</p>
+          <h2 id="faq-heading" class="section-title">
+            Frequently <span class="text-gradient-gold">Asked</span>
+          </h2>
+          <p class="section-subtitle">Everything you need to know about LUX products and services.</p>
+        </div>
+
+        <div class="faq-grid">
+          <!-- Column 1 -->
+          <div class="faq-column">
+            <div class="faq-item reveal-up" id="faq-1">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1" id="faq-btn-1">
+                <span>What materials do you use in your jewelry?</span>
+                <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+              </button>
+              <div class="faq-answer" id="faq-answer-1" role="region" aria-labelledby="faq-btn-1" hidden>
+                <p>We use 18K and 24K gold, sterling silver (925), platinum, and ethically sourced gemstones including diamonds, sapphires, rubies, and emeralds. All materials are certified conflict-free.</p>
+              </div>
+            </div>
+
+            <div class="faq-item reveal-up" id="faq-2">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2" id="faq-btn-2">
+                <span>How long does shipping take?</span>
+                <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+              </button>
+              <div class="faq-answer" id="faq-answer-2" role="region" aria-labelledby="faq-btn-2" hidden>
+                <p>Standard shipping takes 3–5 business days. Express shipping (1–2 days) is available at checkout. International orders typically arrive within 7–14 business days. All orders over $200 receive free express shipping.</p>
+              </div>
+            </div>
+
+            <div class="faq-item reveal-up" id="faq-3">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3" id="faq-btn-3">
+                <span>Can I return or exchange my purchase?</span>
+                <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+              </button>
+              <div class="faq-answer" id="faq-answer-3" role="region" aria-labelledby="faq-btn-3" hidden>
+                <p>Yes! We offer a 30-day hassle-free return and exchange policy. Items must be in their original, unworn condition with all original packaging. Custom engraved pieces are non-returnable.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Column 2 -->
+          <div class="faq-column">
+            <div class="faq-item reveal-up" id="faq-4">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4" id="faq-btn-4">
+                <span>Do you offer custom engraving?</span>
+                <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+              </button>
+              <div class="faq-answer" id="faq-answer-4" role="region" aria-labelledby="faq-btn-4" hidden>
+                <p>Absolutely! Many of our pieces can be personalized with custom engraving. Simply select the engraving option on the product page. Add 2–3 extra business days for engraved pieces.</p>
+              </div>
+            </div>
+
+            <div class="faq-item reveal-up" id="faq-5">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5" id="faq-btn-5">
+                <span>Is my payment information secure?</span>
+                <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+              </button>
+              <div class="faq-answer" id="faq-answer-5" role="region" aria-labelledby="faq-btn-5" hidden>
+                <p>Your security is our priority. We use 256-bit SSL encryption and are fully PCI-DSS compliant. We accept all major credit cards, PayPal, and Apple Pay. We never store your card details.</p>
+              </div>
+            </div>
+
+            <div class="faq-item reveal-up" id="faq-6">
+              <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-6" id="faq-btn-6">
+                <span>How do I care for my jewelry?</span>
+                <i class="ph ph-plus faq-icon" aria-hidden="true"></i>
+              </button>
+              <div class="faq-answer" id="faq-answer-6" role="region" aria-labelledby="faq-btn-6" hidden>
+                <p>We recommend storing jewelry in the provided velvet pouch, away from moisture and direct sunlight. Clean gently with a soft, lint-free cloth. Avoid contact with perfumes, chlorine, and harsh chemicals. A full care guide is included with every purchase.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END FAQ -->
+
+    <!-- =====================================================
+         CONTACT SECTION
+    ====================================================== -->
+    <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+      <div class="section-container">
+        <!-- Left: contact info -->
+        <div class="contact-info reveal-left">
+          <p class="section-eyebrow">Get in Touch</p>
+          <h2 id="contact-heading" class="section-title">
+            We'd Love to<br /><span class="text-gradient-gold">Hear From You</span>
+          </h2>
+          <p class="contact-desc">
+            Whether you have questions about a specific piece, need help with sizing, or want to plan a bespoke creation — our team is here to help.
+          </p>
+
+          <address class="contact-details">
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <i class="ph ph-map-pin" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>Visit Us</strong>
+                <span>14 Goldsmith Lane, Mayfair, London W1K 3PP</span>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <i class="ph ph-phone" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>Call Us</strong>
+                <a href="tel:+441234567890" class="contact-link">+44 (0) 123 456 7890</a>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <i class="ph ph-envelope" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>Email Us</strong>
+                <a href="mailto:hello@luxjewelry.com" class="contact-link">hello@luxjewelry.com</a>
+              </div>
+            </div>
+
+            <div class="contact-detail-item">
+              <div class="contact-detail-icon">
+                <i class="ph ph-clock" aria-hidden="true"></i>
+              </div>
+              <div>
+                <strong>Hours</strong>
+                <span>Mon – Sat: 9am – 7pm GMT</span>
+              </div>
+            </div>
+          </address>
+
+          <!-- Social links -->
+          <div class="social-links" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Follow LUX on Instagram">
+              <i class="ph ph-instagram-logo" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Follow LUX on Facebook">
+              <i class="ph ph-facebook-logo" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Follow LUX on Pinterest">
+              <i class="ph ph-pinterest-logo" aria-hidden="true"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Follow LUX on Twitter/X">
+              <i class="ph ph-x-logo" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: contact form -->
+        <div class="contact-form-wrap reveal-right">
+          <form id="contact-form" class="contact-form" novalidate aria-label="Contact form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-fname">First Name <span aria-hidden="true" class="required-star">*</span></label>
+                <input
+                  type="text"
+                  id="contact-fname"
+                  name="firstName"
+                  class="form-input"
+                  placeholder="Jane"
+                  required
+                  autocomplete="given-name"
+                  aria-required="true"
+                />
+                <span class="form-error" id="err-fname" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="contact-lname">Last Name <span aria-hidden="true" class="required-star">*</span></label>
+                <input
+                  type="text"
+                  id="contact-lname"
+                  name="lastName"
+                  class="form-input"
+                  placeholder="Doe"
+                  required
+                  autocomplete="family-name"
+                  aria-required="true"
+                />
+                <span class="form-error" id="err-lname" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-email">Email Address <span aria-hidden="true" class="required-star">*</span></label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                class="form-input"
+                placeholder="jane@example.com"
+                required
+                autocomplete="email"
+                aria-required="true"
+              />
+              <span class="form-error" id="err-email" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-phone">Phone Number</label>
+              <input
+                type="tel"
+                id="contact-phone"
+                name="phone"
+                class="form-input"
+                placeholder="+1 (555) 000-0000"
+                autocomplete="tel"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject">Subject <span aria-hidden="true" class="required-star">*</span></label>
+              <select id="contact-subject" name="subject" class="form-input form-select" required aria-required="true">
+                <option value="" disabled selected>Select a topic…</option>
+                <option value="product">Product Enquiry</option>
+                <option value="order">Order &amp; Shipping</option>
+                <option value="return">Returns &amp; Exchanges</option>
+                <option value="custom">Custom &amp; Bespoke</option>
+                <option value="other">Other</option>
+              </select>
+              <span class="form-error" id="err-subject" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Message <span aria-hidden="true" class="required-star">*</span></label>
+              <textarea
+                id="contact-message"
+                name="message"
+                class="form-input form-textarea"
+                rows="5"
+                placeholder="Tell us how we can help…"
+                required
+                aria-required="true"
+              ></textarea>
+              <span class="form-error" id="err-message" aria-live="polite"></span>
+            </div>
+
+            <!-- Submission feedback -->
+            <div id="form-success" class="form-success hidden" role="alert" aria-live="assertive">
+              <i class="ph ph-check-circle" aria-hidden="true"></i>
+              Thank you! Your message has been sent. We'll reply within 24 hours.
+            </div>
+
+            <button type="submit" id="contact-submit" class="btn-primary-cta w-full justify-center">
+              Send Message
+              <i class="ph ph-paper-plane-tilt" aria-hidden="true"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <!-- END CONTACT -->
+
+  </main><!-- /#main-content -->
+
+  <!-- =====================================================
+       FOOTER
+  ====================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-upper">
+      <!-- Brand column -->
+      <div class="footer-col footer-brand-col">
+        <a href="#hero" class="brand-logo footer-logo" aria-label="LUX Home">
+          <span class="brand-icon">◈</span>
+          <span class="brand-name">LUX</span>
+        </a>
+        <p class="footer-brand-desc">
+          Timeless jewelry crafted with passion. Elevating elegance since 1999.
+        </p>
+        <div class="footer-social" aria-label="Social media">
+          <a href="#" class="social-link" aria-label="Instagram"><i class="ph ph-instagram-logo" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="Facebook"><i class="ph ph-facebook-logo" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="Pinterest"><i class="ph ph-pinterest-logo" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="Twitter"><i class="ph ph-x-logo" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Navigation links -->
+      <nav class="footer-col" aria-label="Shop navigation">
+        <h3 class="footer-col-title">Shop</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#products" class="footer-link">All Jewelry</a></li>
+          <li><a href="#categories" class="footer-link">Watches</a></li>
+          <li><a href="#categories" class="footer-link">Necklaces</a></li>
+          <li><a href="#categories" class="footer-link">Earrings</a></li>
+          <li><a href="#categories" class="footer-link">Rings</a></li>
+          <li><a href="#categories" class="footer-link">Bracelets</a></li>
+        </ul>
+      </nav>
+
+      <!-- Company links -->
+      <nav class="footer-col" aria-label="Company navigation">
+        <h3 class="footer-col-title">Company</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#about"      class="footer-link">Our Story</a></li>
+          <li><a href="#"           class="footer-link">Careers</a></li>
+          <li><a href="#"           class="footer-link">Press</a></li>
+          <li><a href="#contact"    class="footer-link">Contact</a></li>
+          <li><a href="#"           class="footer-link">Sustainability</a></li>
+        </ul>
+      </nav>
+
+      <!-- Support links -->
+      <nav class="footer-col" aria-label="Support navigation">
+        <h3 class="footer-col-title">Support</h3>
+        <ul class="footer-links" role="list">
+          <li><a href="#faq"  class="footer-link">FAQ</a></li>
+          <li><a href="#"     class="footer-link">Shipping Info</a></li>
+          <li><a href="#"     class="footer-link">Returns</a></li>
+          <li><a href="#"     class="footer-link">Size Guide</a></li>
+          <li><a href="#"     class="footer-link">Care Guide</a></li>
+          <li><a href="#"     class="footer-link">Privacy Policy</a></li>
+        </ul>
+      </nav>
+
+      <!-- Newsletter signup -->
+      <div class="footer-col footer-newsletter-col">
+        <h3 class="footer-col-title">Newsletter</h3>
+        <p class="footer-newsletter-desc">Join 12,000+ subscribers. Get early access to new collections and exclusive offers.</p>
+        <form id="newsletter-form" class="newsletter-form" novalidate aria-label="Newsletter signup">
+          <div class="newsletter-input-wrap">
+            <label for="newsletter-email" class="sr-only">Email address for newsletter</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              class="newsletter-input"
+              placeholder="your@email.com"
+              required
+              aria-required="true"
+            />
+            <button type="submit" class="newsletter-submit" aria-label="Subscribe to newsletter">
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div id="newsletter-msg" class="newsletter-msg" aria-live="polite"></div>
+        </form>
+        <p class="newsletter-privacy">
+          <i class="ph ph-lock-simple" aria-hidden="true"></i>
+          No spam. Unsubscribe anytime.
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer lower bar -->
+    <div class="footer-lower">
+      <p class="footer-copyright">
+        &copy; <span id="footer-year"></span> LUX Jewelry. All rights reserved.
+      </p>
+      <div class="footer-payment-icons" aria-label="Accepted payment methods">
+        <span class="payment-icon">VISA</span>
+        <span class="payment-icon">MC</span>
+        <span class="payment-icon">AMEX</span>
+        <span class="payment-icon">PayPal</span>
+        <span class="payment-icon">Apple Pay</span>
+      </div>
+    </div>
+  </footer>
+  <!-- END FOOTER -->
+
+  <!-- =====================================================
+       BACK TO TOP BUTTON
+  ====================================================== -->
+  <button
+    id="back-to-top"
+    class="back-to-top"
+    aria-label="Scroll back to top"
+    hidden
+  >
+    <i class="ph ph-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- =====================================================
+       PRODUCT QUICK-VIEW MODAL
+  ====================================================== -->
+  <div id="quick-view-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Product quick view" aria-hidden="true">
+    <div class="modal-box" id="quick-view-content">
+      <button id="modal-close" class="modal-close-btn" aria-label="Close modal">
+        <i class="ph ph-x" aria-hidden="true"></i>
+      </button>
+      <!-- Content injected by JS -->
+    </div>
+  </div>
+
+  <!-- =====================================================
+       TOAST NOTIFICATION
+  ====================================================== -->
+  <div id="toast-container" class="toast-container" aria-live="assertive" aria-atomic="true">
+    <!-- Toasts appended by JS -->
+  </div>
+
+  <!-- =====================================================
+       CUSTOM JAVASCRIPT
+  ====================================================== -->
+  <script src="js/script.js"></script>
+
+</body>
+</html>
