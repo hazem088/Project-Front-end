@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hazem Emam | Dev Portfolio</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            dark: {
+              bg: '#090a16',
+              card: '#111327',
+              border: '#1e2246'
+            },
+            primary: {
+              DEFAULT: '#6366f1',
+              hover: '#4f46e5',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #090a16;
+      color: #f3f4f6;
+    }
+    
+    .glass-card {
+      background: rgba(17, 19, 39, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .glass-card:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+    }
+
+    .circle-bg {
+      fill: none;
+      stroke: #1e2246;
+      stroke-width: 8;
+    }
+
+    .circle-progress {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      transition: stroke-dashoffset 1s ease-in-out;
+    }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 1em;
+      background-color: #6366f1;
+      margin-left: 4px;
+      animation: blink 0.8s infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .glow-bg {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden relative">
+
+  <!-- Glows -->
+  <div class="glow-bg w-96 h-96 bg-indigo-600 top-0 left-1/3"></div>
+  <div class="glow-bg w-96 h-96 bg-purple-600 top-1/2 right-10"></div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#090a16]/80 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+        <span class="text-cyan-400 text-lg">●</span> Portfolio
+      </a>
+
+      <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-300">
+        <a href="#home" class="hover:text-indigo-400 transition">Home</a>
+        <a href="#skills" class="hover:text-indigo-400 transition">Skills</a>
+        <a href="#projects" class="hover:text-indigo-400 transition">Projects</a>
+        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
+      </nav>
+
+      <div class="flex items-center gap-5">
+        <div class="hidden lg:flex items-center gap-4 text-slate-400 text-lg">
+          <a href="https://www.linkedin.com/in/hazem-emam-727892331" target="_blank" class="hover:text-indigo-400 transition"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://github.com/hazem088" target="_blank" class="hover:text-indigo-400 transition"><i class="fa-brands fa-github"></i></a>
+          <a href="https://wa.me/201500201277" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+
+        <a href="#contact" class="px-5 py-2.5 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/30 transition">
+          Let's Connect
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="max-w-7xl mx-auto px-6 pt-28 pb-20 flex flex-col items-center text-center justify-center min-h-[85vh]">
+    <span class="text-xs font-semibold tracking-wide text-cyan-300 bg-cyan-950/60 border border-cyan-500/30 px-4 py-1.5 rounded-full mb-6 flex items-center gap-2 shadow-sm">
+      <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Available for opportunities
+    </span>
+    
+    <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight max-w-4xl">
+      Hi! I'm <span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">Hazem Emam</span>
+    </h1>
+
+    <div class="text-3xl md:text-5xl font-extrabold text-cyan-400 mb-6 h-14 flex items-center justify-center">
+      <span id="typed-text"></span><span class="typing-cursor"></span>
+    </div>
+
+    <p class="text-slate-400 text-base md:text-lg max-w-2xl mb-10 leading-relaxed">
+      Crafting beautiful, responsive web applications with modern technologies. Passionate about clean code, elegant UI, and delightful user experiences.
+    </p>
+
+    <div class="flex flex-wrap gap-4 justify-center mb-10">
+      <a href="#projects" class="px-7 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold transition flex items-center gap-2 shadow-lg shadow-indigo-600/25">
+        View My Projects
+      </a>
+      <a href="#contact" class="px-7 py-3.5 rounded-xl glass-card hover:bg-white/10 font-bold transition">
+        Get In Touch
+      </a>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="max-w-7xl mx-auto px-6 py-20 text-center">
+    <h2 class="text-4xl font-extrabold mb-3">Front-End Skills</h2>
+    <div class="w-12 h-1 bg-gradient-to-r from-indigo-500 to-cyan-400 mx-auto rounded-full mb-4"></div>
+    <p class="text-slate-400 max-w-xl mx-auto text-sm mb-12">
+      The front-end technologies I use to build modern, responsive web experiences.
+    </p>
+
+    <div class="relative max-w-3xl mx-auto flex items-center justify-between">
+      <button id="prev-skill" class="w-10 h-10 rounded-full glass-card hover:bg-indigo-600/30 flex items-center justify-center text-slate-300 transition z-10">
+        <i class="fa-solid fa-chevron-left text-xs"></i>
+      </button>
+
+      <div id="skills-container" class="grid grid-cols-2 gap-12 my-6">
+        <!-- Rendered via JS -->
+      </div>
+
+      <button id="next-skill" class="w-10 h-10 rounded-full glass-card hover:bg-indigo-600/30 flex items-center justify-center text-slate-300 transition z-10">
+        <i class="fa-solid fa-chevron-right text-xs"></i>
+      </button>
+    </div>
+
+    <div class="flex justify-center gap-2 mt-8" id="dots-container"></div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section id="projects" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold mb-3">Featured Projects</h2>
+      <div class="w-12 h-1 bg-gradient-to-r from-indigo-500 to-cyan-400 mx-auto rounded-full mb-4"></div>
+      <p class="text-slate-400 max-w-xl mx-auto text-sm">
+        Real-world applications built with modern technologies and best practices.
+      </p>
+
+      <div class="flex justify-center gap-3 mt-8">
+        <button onclick="filterProjects('all')" id="filter-all" class="filter-btn px-6 py-2.5 rounded-full bg-indigo-600 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition">All Projects</button>
+        <button onclick="filterProjects('webapp')" id="filter-webapp" class="filter-btn px-6 py-2.5 rounded-full glass-card hover:bg-white/10 text-slate-300 text-xs font-semibold transition">Web Apps</button>
+        <button onclick="filterProjects('portfolio')" id="filter-portfolio" class="filter-btn px-6 py-2.5 rounded-full glass-card hover:bg-white/10 text-slate-300 text-xs font-semibold transition">Portfolio</button>
+      </div>
+    </div>
+
+    <!-- Projects Grid (مع معاينا صور حقيقية للمواقع) -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card webapp glass-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 group transition-all duration-300">
+        <div>
+          <div class="h-48 rounded-xl mb-6 relative overflow-hidden border border-white/10 group-hover:border-indigo-500/50 transition bg-slate-900">
+            <img src="https://api.microlink.io/?url=https://hazem088.github.io/Project-Front-end/Project%20-1/&screenshot=true&meta=false&embed=screenshot.url" alt="Project 1 Preview" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <a href="https://hazem088.github.io/Project-Front-end/Project%20-1/" target="_blank" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-full shadow-lg">
+                View Project
+              </a>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Project - 1</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-6">
+            Modern web application interface built with clean architecture and responsive layout.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">HTML</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">CSS</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">JavaScript</span>
+        </div>
+      </div>
+
+      <!-- Project 2 (تصحيح الرابط ومعاينة الصورة) -->
+      <div class="project-card webapp glass-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 group transition-all duration-300">
+        <div>
+          <div class="h-48 rounded-xl mb-6 relative overflow-hidden border border-white/10 group-hover:border-cyan-500/50 transition bg-slate-900">
+            <img src="https://api.microlink.io/?url=https://hazem088.github.io/Project-Front-end/Project%20-2/&screenshot=true&meta=false&embed=screenshot.url" alt="Project 2 Preview" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <a href="https://hazem088.github.io/Project-Front-end/Project%20-2/" target="_blank" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-full shadow-lg">
+                View Project
+              </a>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Project - 2</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-6">
+            Interactive front-end web experience engineered for high performance and smooth interactions.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">HTML5</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">CSS3</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">TailwindCSS</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card webapp glass-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 group transition-all duration-300">
+        <div>
+          <div class="h-48 rounded-xl mb-6 relative overflow-hidden border border-white/10 group-hover:border-purple-500/50 transition bg-slate-900">
+            <img src="https://api.microlink.io/?url=https://hazem088.github.io/Project-Front-end/Project%20-3/&screenshot=true&meta=false&embed=screenshot.url" alt="Project 3 Preview" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <a href="https://hazem088.github.io/Project-Front-end/Project%20-3/" target="_blank" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-full shadow-lg">
+                View Project
+              </a>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Project - 3</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-6">
+            Responsive user interface design optimized for cross-platform compatibility.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">HTML</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">CSS</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">Bootstrap</span>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card webapp glass-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 group transition-all duration-300">
+        <div>
+          <div class="h-48 rounded-xl mb-6 relative overflow-hidden border border-white/10 group-hover:border-emerald-500/50 transition bg-slate-900">
+            <img src="https://api.microlink.io/?url=https://hazem088.github.io/Project-Front-end/Project%20-4/&screenshot=true&meta=false&embed=screenshot.url" alt="Project 4 Preview" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <a href="https://hazem088.github.io/Project-Front-end/Project%20-4/" target="_blank" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-full shadow-lg">
+                View Project
+              </a>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Project - 4</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-6">
+            Elegant landing page crafted with contemporary UI patterns and flex/grid systems.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">HTML</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">CSS</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">JavaScript</span>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card webapp glass-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 group transition-all duration-300">
+        <div>
+          <div class="h-48 rounded-xl mb-6 relative overflow-hidden border border-white/10 group-hover:border-indigo-500/50 transition bg-slate-900">
+            <img src="https://api.microlink.io/?url=https://hazem088.github.io/Project-Front-end/Project%20-5/&screenshot=true&meta=false&embed=screenshot.url" alt="Project 5 Preview" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <a href="https://hazem088.github.io/Project-Front-end/Project%20-5/" target="_blank" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-full shadow-lg">
+                View Project
+              </a>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2">Project - 5</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-6">
+            Comprehensive web project demonstrating clean code practices and dynamic styling.
+          </p>
+        </div>
+        <div class="flex gap-2">
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">HTML</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">CSS</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">TailwindCSS</span>
+        </div>
+      </div>
+
+      <!-- Project 6: Dev Portfolio -->
+      <div class="project-card portfolio glass-card rounded-2xl overflow-hidden flex flex-col justify-between p-6 group transition-all duration-300">
+        <div>
+          <div class="h-48 rounded-xl mb-6 relative overflow-hidden border border-white/10 group-hover:border-yellow-500/50 transition bg-slate-900">
+            <div class="w-full h-full bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 p-4 flex flex-col items-center justify-center text-center">
+              <i class="fa-solid fa-address-card text-4xl text-yellow-400 mb-2"></i>
+              <span class="text-xs font-bold text-slate-200">Hazem Emam Portfolio</span>
+            </div>
+            <div class="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center">
+              <a href="https://github.com/hazem088" target="_blank" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs rounded-full shadow-lg">
+                View Source
+              </a>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-indigo-300">Dev Portfolio – Personal Site</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-6">
+            A fully responsive personal portfolio site built with React and Tailwind CSS, featuring animated sections, a project showcase, skills proficiency rings, and a contact form.
+          </p>
+        </div>
+        <div class="flex gap-2 flex-wrap">
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">React</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">Tailwind</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">CSS</span>
+          <span class="px-3 py-1 rounded bg-indigo-950/80 border border-indigo-500/20 text-[10px] text-indigo-300 font-medium">Vite</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="max-w-7xl mx-auto px-6 py-20">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-extrabold mb-3">Get In Touch</h2>
+      <div class="w-12 h-1 bg-gradient-to-r from-indigo-500 to-cyan-400 mx-auto rounded-full mb-4"></div>
+      <p class="text-slate-400 text-sm max-w-xl mx-auto">
+        Open to freelance projects, internships, and full-time opportunities. Let's build something great together.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-8 items-stretch max-w-5xl mx-auto">
+      <div class="lg:col-span-2 glass-card p-8 rounded-3xl border border-white/10 flex flex-col justify-between items-center text-center">
+        <div class="flex flex-col items-center">
+          <div class="w-20 h-20 rounded-full bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-3xl text-indigo-400 mb-6 shadow-inner">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-3 text-white">Hazem Emam</h3>
+          <p class="text-slate-400 text-xs leading-relaxed mb-8">
+            Full-Stack Developer & React Engineer based in Egypt. I love building elegant, responsive web applications and am always open to new opportunities.
+          </p>
+        </div>
+
+        <div class="w-full space-y-4 text-left text-xs">
+          <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-900/80 border border-white/5">
+            <i class="fa-solid fa-location-dot text-indigo-400 text-base"></i>
+            <div>
+              <span class="block text-slate-500 font-medium text-[10px]">Location</span>
+              <span class="font-semibold text-slate-200">Egypt</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-3.5 rounded-2xl bg-slate-900/80 border border-white/5">
+            <i class="fa-solid fa-code text-indigo-400 text-base"></i>
+            <div>
+              <span class="block text-slate-500 font-medium text-[10px]">Focus</span>
+              <span class="font-semibold text-slate-200">Full-Stack Development</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 glass-card p-8 rounded-3xl border border-white/10 flex flex-col justify-between">
+        <h3 class="text-xl font-bold mb-6 text-white">Send a Message</h3>
+        <form action="#" method="post" class="space-y-4">
+          <div class="grid grid-cols-2 gap-4">
+            <input type="text" placeholder="First Name" required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500 transition">
+            <input type="text" placeholder="Last Name" required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500 transition">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <input type="email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500 transition">
+            <input type="tel" placeholder="Phone No. (optional)" class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500 transition">
+          </div>
+          <textarea rows="4" placeholder="Your message..." required class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-white/10 text-white text-xs focus:outline-none focus:border-indigo-500 transition resize-none"></textarea>
+          <button type="submit" class="w-full py-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-lg shadow-indigo-600/30 transition">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 pt-12 pb-8 mt-12 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <div>
+        <a href="#" class="text-lg font-bold tracking-tight text-white flex items-center gap-2 mb-3">
+          <span class="text-cyan-400">●</span> Portfolio
+        </a>
+        <p class="text-slate-400 leading-relaxed max-w-sm mb-4">
+          Full-Stack Developer building beautiful, responsive web experiences with modern web technologies.
+        </p>
+        <div class="flex items-center gap-4 text-base text-slate-400">
+          <a href="https://github.com/hazem088" target="_blank" class="hover:text-indigo-400 transition"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/hazem-emam-727892331" target="_blank" class="hover:text-indigo-400 transition"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="https://wa.me/201500201277" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">Navigation</h4>
+        <ul class="space-y-2">
+          <li><a href="#home" class="hover:text-indigo-400 transition">Home</a></li>
+          <li><a href="#skills" class="hover:text-indigo-400 transition">Skills</a></li>
+          <li><a href="#projects" class="hover:text-indigo-400 transition">Projects</a></li>
+          <li><a href="#contact" class="hover:text-indigo-400 transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-semibold text-sm mb-4">What I Do</h4>
+        <ul class="space-y-2 text-slate-400">
+          <li>Full-Stack Development</li>
+          <li>React & Web Applications</li>
+          <li>Responsive UI/UX Design</li>
+          <li>Component Architecture</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 border-t border-white/5 pt-6 text-center text-slate-500">
+      <p>© 2026 Hazem Emam - All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    const words = ["Front-End Developer.","Full-Stack Developer.", "React Engineer."];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typedTextElement = document.getElementById("typed-text");
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+      if (isDeleting) {
+        typedTextElement.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typedTextElement.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      let typeSpeed = isDeleting ? 60 : 120;
+
+      if (!isDeleting && charIndex === currentWord.length) {
+        typeSpeed = 1800;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+        typeSpeed = 400;
+      }
+
+      setTimeout(typeEffect, typeSpeed);
+    }
+    document.addEventListener("DOMContentLoaded", typeEffect);
+
+    const skills = [
+      { name: "Tailwind CSS", percent: 95, color: "stroke-cyan-400" },
+      { name: "Bootstrap", percent: 93, color: "stroke-purple-500" },
+      { name: "HTML5", percent: 95, color: "stroke-orange-500" },
+      { name: "CSS3", percent: 90, color: "stroke-blue-500" },
+      { name: "JavaScript", percent: 85, color: "stroke-yellow-400" },
+      { name: "React.js", percent: 85, color: "stroke-indigo-400" }
+    ];
+
+    let currentSkillPage = 0;
+    const itemsPerPage = 2;
+    const totalPages = Math.ceil(skills.length / itemsPerPage);
+
+    function renderSkills() {
+      const container = document.getElementById("skills-container");
+      const dotsContainer = document.getElementById("dots-container");
+      container.innerHTML = "";
+      dotsContainer.innerHTML = "";
+
+      const start = currentSkillPage * itemsPerPage;
+      const visibleSkills = skills.slice(start, start + itemsPerPage);
+
+      visibleSkills.forEach(skill => {
+        const strokeDashOffset = 251.2 - (251.2 * skill.percent) / 100;
+        container.innerHTML += `
+          <div class="flex flex-col items-center">
+            <div class="relative w-36 h-36 flex items-center justify-center">
+              <svg class="w-full h-full" viewBox="0 0 100 100">
+                <circle class="circle-bg" cx="50" cy="50" r="40"></circle>
+                <circle class="circle-progress ${skill.color}" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="${strokeDashOffset}"></circle>
+              </svg>
+              <span class="absolute text-2xl font-extrabold text-white">${skill.percent}%</span>
+            </div>
+            <span class="mt-4 font-bold text-slate-200 text-sm">${skill.name}</span>
+          </div>
+        `;
+      });
+
+      for (let i = 0; i < totalPages; i++) {
+        dotsContainer.innerHTML += `
+          <button onclick="goToSkillPage(${i})" class="h-2 rounded-full transition-all duration-300 ${i === currentSkillPage ? 'w-6 bg-indigo-500' : 'w-2 bg-slate-700'}"></button>
+        `;
+      }
+    }
+
+    document.getElementById("prev-skill").addEventListener("click", () => {
+      currentSkillPage = (currentSkillPage - 1 + totalPages) % totalPages;
+      renderSkills();
+    });
+
+    document.getElementById("next-skill").addEventListener("click", () => {
+      currentSkillPage = (currentSkillPage + 1) % totalPages;
+      renderSkills();
+    });
+
+    function goToSkillPage(page) {
+      currentSkillPage = page;
+      renderSkills();
+    }
+
+    renderSkills();
+
+    function filterProjects(category) {
+      const cards = document.querySelectorAll('.project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg');
+        btn.classList.add('glass-card', 'text-slate-300');
+      });
+
+      const activeBtn = document.getElementById(`filter-${category}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('glass-card', 'text-slate-300');
+        activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-lg');
+      }
+
+      cards.forEach(card => {
+        if (category === 'all') {
+          card.style.display = 'flex';
+        } else if (card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
