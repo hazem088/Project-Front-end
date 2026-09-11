@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <div class="card">
+    <div class="header">
+      <i class="fa-solid fa-cloud-sun"></i>
+      <span>Weather App</span>
+    </div>
+
+    <div class="input-group">
+      <input type="text" id="countryInput" placeholder="Enter country name">
+      <button id="searchBtn">Get Weather</button>
+    </div>
+
+    <div id="errorMsg" class="error-msg hidden"></div>
+
+    <div id="results" class="results hidden">
+      <div class="result-item">
+        <i class="fa-solid fa-location-dot"></i>
+        <span>Country: <strong id="resCountry">-</strong></span>
+      </div>
+      <div class="result-item">
+        <i class="fa-solid fa-globe"></i>
+        <span>Latitude: <strong id="resLat">-</strong></span>
+      </div>
+      <div class="result-item">
+        <i class="fa-solid fa-globe"></i>
+        <span>Longitude: <strong id="resLon">-</strong></span>
+      </div>
+      <div class="result-item">
+        <i class="fa-solid fa-temperature-half"></i>
+        <span>Temperature: <strong id="resTemp">-</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
